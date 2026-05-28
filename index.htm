@@ -1,0 +1,1603 @@
+<!-- >>> Common >>> -->
+<!doctype html>
+<html lang="en-gb">
+	<head>
+  	<title>EML Bluetooth Counter</title>
+<!-- <<< Common <<< -->
+
+<!-- >>>For original webpage >>> -->
+		<meta charset="utf-8"/>
+		<meta http-equiv="Content-Type" content="text/html"/>
+<!--		<meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+<!-- <<<For original webpage <<< -->
+<!-- >>> These meta tags are Apple-specific, and set the web application to run in full-screen mode with a black status bar. Learn more at https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html >>>
+  	<meta name="mobile-web-app-capable" content="no">
+  	<meta name="apple-mobile-web-app-title" content="EMLCount" />
+  	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+ <<< These meta tags are Apple-specific, and set the web application to run in full-screen mode with a black status bar. Learn more at https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html <<< -->
+
+<!-- >>>For Capacitor/Iconic/Angular >>>
+  <base href="/" />
+	
+	<meta name="color-scheme" content="light dark" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<link rel="icon" type="image/png" href="192x192.png" />
+ <<< For Capacitor/Iconic/Angular <<< -->
+
+	    
+<!-- >>>For Capacitor/Iconic/Angular >>> 
+   add to homescreen for ios 
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-title" content="Ionic App" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+	<link rel="manifest" href="manifest.webmanifest">
+ <<< For Capacitor/Iconic/Angular <<< -->
+
+<!-- >>>For pwabuilder >>> -->
+<!-- <base href="/" /> -->
+
+  <!-- This meta viewport ensures the webpage's dimensions change according to the device it's on. This is called Responsive Web Design. -->
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+<!--  <meta name="viewport" content="viewport-fit=cover, width=420, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" /> -->
+  <meta name="description" content="This is an EML PWA for its Bluetooth Counter" />
+
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181818" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f3f3" />
+  <!-- >>> These meta tags are Apple-specific, and set the web application to run in full-screen mode with a black status bar. Learn more at https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html >>>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="PWA Starter" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <<< These meta tags are Apple-specific, and set the web application to run in full-screen mode with a black status bar. Learn more at https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html <<< -->
+
+<!-- >>> This tag is used by the PWA Starter CLI to identify template projects. Don't remove if you are using the CLI. >>>
+  <meta name="pwa-starter-template-identity" content="pwa-starter"/>
+ <<< This tag is used by the PWA Starter CLI to identify template projects. Don't remove if you are using the CLI. <<< -->
+
+<!-- >>> Imports an icon to represent the document. >>> -->
+<link rel="icon" href="EMLicon192x192.png" type="image/png" />
+	<!-- <<< Imports an icon to represent the document. <<<-->
+  
+	<!-- Imports the manifest to represent the web application. A web app must have a manifest to be a PWA. -->
+  <link rel="manifest" href="manifest.json" />
+	<!-- Imports the manifest to represent the web application. A web app must have a manifest to be a PWA. -->
+
+	<!-- light mode and dark mode CSS 
+  <link rel="stylesheet" media="(prefers-color-scheme:light)"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/dist/themes/light.css">
+  <link rel="stylesheet" media="(prefers-color-scheme:dark)"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/dist/themes/dark.css"
+    onload="document.documentElement.classList.add('sl-theme-dark');">
+-->
+<!--
+  <script type="module">
+    import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
+    setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/');
+  </script>
+  <script type="module" src="/src/app-index.ts"></script>
+-->
+
+<!-- <<<For pwabuilder <<< -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> HTML >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+<style>
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CSS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+	html
+		{
+		    scroll-behavior: smooth;
+		}
+	title
+        {
+            color: blue;
+        }
+
+	body
+			{
+			max-width: 400px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+  p
+    {
+			max-width: 400px;
+			text-align: center;
+    }
+
+  div
+    {
+			max-width: 400px;
+  		position: relative;
+			color: blue;
+     	font-family: Arial, sans-serif;
+      font-size: 20px;
+     }
+		 
+	.divStyle1
+		{	
+		display: none;
+		}
+	label
+		{
+			text-align:left;
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+			max-width: 400px;
+/*			text-justify: left;*/
+		}
+
+	.spanStyle1
+		{
+			margin-right: 10px;
+			margin-left: 5px;
+		}
+
+	.spanStyle2
+		{
+			margin-right: 10px;
+		}
+
+	.spanStyle3 
+		{
+/*			text-align: center;
+			text-justify: left;*/
+    	font-size: 13px;
+      color: black;
+		}
+		
+  .input1
+    {
+			text-align: center;
+     	padding: 10px;
+     	font-size: 20px;
+     	width: 334px;
+			height:25px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+			display:block-inline;
+    }
+
+    .input2
+			{
+				text-align: center;
+				height: 25px;
+/*			width: 52px;*/
+				width: 68px;
+				padding: 10px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				margin-left: 0px;
+				margin-right: 0px;
+				font-size: 20px;
+				display:block-inline;
+			}
+   .input3
+			{
+				height: 25px;
+/*			width: 52px;*/
+				width: 48px;
+				padding: 10px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				margin-left: 25px;
+				margin-right: 4px;
+				font-size: 20px;
+				display:block-inline;
+			}
+
+    .select1 /* for select elements, height and width seem to set the border size not the text area as it does with other elements */
+        {
+					background-color: white;
+					height: 47px;
+/*				width: 74px;*/
+					width: 70px;
+					padding: 10px;
+					border: 1px solid #ccc;
+					border-radius: 4px;
+					margin-left: 20px;
+					margin-right: 4px;
+					font-size: 20px;
+					display:block-inline;
+        }
+
+	.buttonBlue
+        {
+					background-color: blue;
+          color: white;
+					font-size: 20px;
+					width: 108px;
+					height:80px;
+					border: none;
+          border-radius: 4px;
+					margin-top: 5px;
+					vertical-align:middle;
+        }
+
+	.buttonLightgrey
+        {
+			background-color: lightgrey;
+            color: white;
+			font-size: 20px;
+			width: 108px;
+			height:80px;
+			border: none;
+            border-radius: 4px;
+			margin-top: 5px;
+			vertical-align:middle;
+        }
+
+	.buttonRed
+        {
+			background-color: red;
+            color: white;
+			font-size: 20px;
+			width: 108px;
+			height:80px;
+			border: none;
+            border-radius: 4px;
+			margin-top: 5px;
+			vertical-align:middle;
+			visibility: hidden;
+        }
+
+	.buttonDarkseagreen
+        {
+			background-color: darkseagreen;
+            color: white;
+			font-size: 20px;
+			width: 108px;
+			height:80px;
+			border: none;
+      border-radius: 4px;
+			margin-top: 5px;
+			vertical-align:middle;
+/*			visibility: hidden; */
+        }
+	.tableStyle1
+		{
+			height:20px;
+		}
+
+	.tableStyle2
+		{
+			height:20px;
+			width:90px;
+		}
+
+	.tableStyle3
+		{
+			height:20px;
+			width:130px;
+		}
+
+	.tableStyle4
+		{
+			height:20px;
+			width:110px;
+		}
+
+	.center
+		{
+    		margin-left: auto;
+  			margin-right: auto;
+		}
+
+	.noborder
+		{
+			font-size: 20px;
+			color: blue;
+			height: 18px;
+			text-align: center;
+			border-collapse: collapse;
+		}
+
+	.border1
+		{
+			font-size: 20px;
+			color: blue;
+			border: 1px solid lightgrey;
+			border-radius: 6px;
+			display: block;
+			white-space: nowrap;
+		}
+
+	.border2
+		{
+			font-size: 20px;
+			color: blue;
+			border: 1px solid lightgrey;
+			border-radius: 4px;
+			border-collapse: collapse;
+			height: 18px;
+		}
+	.border3
+		{
+      border: 1px solid lightgrey;
+		  border-radius: 6px;
+			border-collapse: collapse;
+		}
+	.count
+		{
+			border-collapse: collapse;
+			color: white;
+			background-color: lightgrey;
+	    border-radius: 6px;
+		}
+	.table-container
+		{
+  		border: 1px solid lightgrey;
+  		border-bottom: none;
+  		overflow: auto; /* Enables both horizontal and vertical scrolling */
+  		margin-left: auto;
+  		margin-right: auto;
+			height: 400px; /* Limits table height for vertical scrolling */
+		}
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< CSS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+    </style>
+</head>
+
+<body>
+<!-- >>> For angular+iconic >>> 
+ 	<app-root></app-root>
+ <<< For angular+iconic <<< -->
+
+<!-- >>> For react+iconic >>>
+		<div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+<<< For react+iconic <<< -->
+
+<!-- >> >>>For pwabuilder >>>
+    if ('serviceWorker' in navigator) {
+      window.onload = () => {
+        navigator.serviceWorker.register(
+          '/sw.js'
+        );
+      }
+    }
+
+  <!-- Our app-indsiteNameex web component. This component is defined in src/pages/app-index.ts-->
+  <!-- <app-index></app-index> -->
+	<!-- <<<For pwabuilder <<< -->
+
+
+	<div id="section1">
+		<img src="EMLBTCsmall3.png" width="330" height="100" alt="EML logo">
+	
+	 <noscript>Please enable JavaScript.</noscript>
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> text field inputs >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
+		<br>
+		<br>
+		<div>
+		  <label for="siteName">Site</label><br>
+      <input id="siteName" class="input1" name="siteName" placeholder="--" type="text" maxlength="35"/>
+    </div>
+		<br>
+		<div>
+      <label for="raingaugeDetails">Raingauge</label><br>
+			<input id="raingaugeDetails" class="input1" name="raingaugeDetails" placeholder="--" type="text" maxlength="35">
+    </div>
+		<br>
+		<div>
+			<span class="spanStyle1"> <label for="gaugeID">Gauge ID</label>	</span > <span class="spanStyle2"> <label for="bottleVolume">Bottle Volume</label> </span> <span class="spanStyle2"> <label for="nozzleSize">Nozzle size</label> </span> <br>
+			<input id="gaugeID" class="input2" name="gaugeID" placeholder="--" type="text" maxlength="6">
+			<input id="bottleVolume" class="input3" name="bottleVolume" placeholder="147" type="number" min="0" max="999" maxlength="3"><span>ml</span>
+
+			<select id="nozzleSize" class="select1" name="nozzle">
+				<option value="--">--</option>
+				<option value="0.6">0.6</option>
+				<option value="1.0">1.0</option>
+				<option value="1.2">1.2</option>
+				<option value="1.5">1.5</option>
+				<option value="2.0">2.0</option>
+			</select><span>mm</span>
+
+		</div>
+
+<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< text field inputs <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Count fields >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
+	<br>
+	<table class="center ; noborder">
+		<tr>
+			<td>
+
+
+
+
+				<table id="table2" class="center ; count">
+					<tr>
+						<td id="batteryValue" colspan="2" class="tableStyle1">Counter</td>
+					</tr>
+					<tr>
+						<td class="tableStyle2" >Tips</td>
+
+						<td class="tableStyle3" >Last Tip Time</td>
+					</tr>
+					<tr>
+						<td id="countValue" class="tableStyle1">---</td>
+						<td id="timeValue"  class="tableStyle1" >--:--</td>
+					</tr>
+			</table>
+
+
+
+
+			</td>
+			<td>
+
+
+
+
+				<table class="center ; noborder">
+
+					<tr>
+						<td class="noborder ; tableStyle4">Elapsed</td>
+					</tr>
+
+					<tr>
+						<td id="localTimeHeader" class="noborder ; tableStyle1">Time</td>
+					</tr>
+
+					<tr>
+						<td id="localTimeValue" class="noborder ; tableStyle1">--:--</td>
+					</tr>
+
+				</table>
+
+
+
+
+			</td>
+		</tr>
+	</table>
+<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Count fields <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> First set of Buttons >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
+	<div>
+		<button id="button1" type="button" class="buttonBlue" onclick="onScanButtonClick()">Connect Counter</button>
+    	<button id="button2" type="button" class="buttonLightgrey" disabled="" onclick="onStopOrResetButtonClick()">Stop Count</button>
+		<button id="button3" type="button" class="buttonLightgrey" disabled="" onclick="onLogResultButtonClick()">Show Counts</button>
+		<br>
+		<button id="button7" type="button" class="buttonRed" onclick="onConfirmResetButtonClick()">Confirm Reset</button>
+	</div>
+	<br>
+<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< First set of Buttons <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Status Line 1 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
+		<div id="sectionOneStatus">
+		</div>
+<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Status Line 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Software version number >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
+		<span class="spanStyle3">V</span><span id="versionNumber" class="spanStyle3">0.16</span>
+<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Software version number <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
+</div>
+<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< End of Section1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	-->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Start of Section2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>	-->
+<div id="section2" class="divStyle1">
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Results Log table >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
+Past Counts
+<div class="table-container">
+<table id="table1" class="center ; border1">
+				<tr>	<td class="border2">Site</td> 						<td class="border2">Gauge ID</td>						<td class="border2">Date</td> 						<td class="border2">Time</td> 				<td class="border2">Raingauge</td>  	<td class="border2">Bottle volume (ml)</td>			<td class="border2">Nozzle size (mm)</td>	<td class="border2">Recorded Tips</td>	<td class="border2">Time Taken</td> 					</tr>
+
+				<tr>	<td id="table1c0r0" class="border2"></td>	<td id="table1c1r0" class="border2"></td>	<td id="table1c2r0" class="border2"></td>		<td id="table1c3r0" class="border2">	</td>		<td id="table1c4r0" class="border2">	</td>	<td id="table1c5r0" class="border2"></td> 	<td id="table1c6r0" class="border2"></td> 	<td id="table1c7r0" class="border2"></td>		<td id="table1c8r0" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r1" class="border2"></td>	<td id="table1c1r1" class="border2"></td>	<td id="table1c2r1" class="border2"></td>		<td id="table1c3r1" class="border2">	</td>		<td id="table1c4r1" class="border2">	</td>	<td id="table1c5r1" class="border2"></td>		<td id="table1c6r1" class="border2"></td>		<td id="table1c7r1" class="border2"></td> 	<td id="table1c8r1" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r2" class="border2"></td>	<td id="table1c1r2" class="border2"></td>	<td id="table1c2r2" class="border2"></td>		<td id="table1c3r2" class="border2">	</td>		<td id="table1c4r2" class="border2">	</td>	<td id="table1c5r2" class="border2"></td> 	<td id="table1c6r2" class="border2"></td>	 	<td id="table1c7r2" class="border2"></td> 	<td id="table1c8r2" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r3" class="border2"></td>	<td id="table1c1r3" class="border2"></td>	<td id="table1c2r3" class="border2"></td>		<td id="table1c3r3" class="border2">	</td>		<td id="table1c4r3" class="border2">	</td>	<td id="table1c5r3" class="border2"></td> 	<td id="table1c6r3" class="border2"></td> 	<td id="table1c7r3" class="border2"></td>		<td id="table1c8r3" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r4" class="border2"></td>	<td id="table1c1r4" class="border2"></td>	<td id="table1c2r4" class="border2"></td>		<td id="table1c3r4" class="border2">	</td>		<td id="table1c4r4" class="border2">	</td>	<td id="table1c5r4" class="border2"></td>		<td id="table1c6r4" class="border2"></td>		<td id="table1c7r4" class="border2"></td> 	<td id="table1c8r4" class="border2"></td> </tr>
+				<tr>	<td id="table1c0r5" class="border2"></td>	<td id="table1c1r5" class="border2"></td>	<td id="table1c2r5" class="border2"></td>		<td id="table1c3r5" class="border2">	</td>		<td id="table1c4r5" class="border2">	</td>	<td id="table1c5r5" class="border2"></td> 	<td id="table1c6r5" class="border2"></td>	 	<td id="table1c7r5" class="border2"></td> 	<td id="table1c8r5" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r6" class="border2"></td>	<td id="table1c1r6" class="border2"></td>	<td id="table1c2r6" class="border2"></td>		<td id="table1c3r6" class="border2">	</td>		<td id="table1c4r6" class="border2">	</td>	<td id="table1c5r6" class="border2"></td> 	<td id="table1c6r6" class="border2"></td> 	<td id="table1c7r6" class="border2"></td>		<td id="table1c8r6" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r7" class="border2"></td>	<td id="table1c1r7" class="border2"></td>	<td id="table1c2r7" class="border2"></td>		<td id="table1c3r7" class="border2">	</td>		<td id="table1c4r7" class="border2">	</td>	<td id="table1c5r7" class="border2"></td>		<td id="table1c6r7" class="border2"></td>		<td id="table1c7r7" class="border2"></td> 	<td id="table1c8r7" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r8" class="border2"></td>	<td id="table1c1r8" class="border2"></td>	<td id="table1c2r8" class="border2"></td>		<td id="table1c3r8" class="border2">	</td>		<td id="table1c4r8" class="border2">	</td>	<td id="table1c5r8" class="border2"></td> 	<td id="table1c6r8" class="border2"></td>	 	<td id="table1c7r8" class="border2"></td> 	<td id="table1c8r8" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r9" class="border2"></td>	<td id="table1c1r9" class="border2"></td>	<td id="table1c2r9" class="border2"></td>		<td id="table1c3r9" class="border2">	</td>		<td id="table1c4r9" class="border2">	</td>	<td id="table1c5r9" class="border2"></td> 	<td id="table1c6r9" class="border2"></td> 	<td id="table1c7r9" class="border2"></td>		<td id="table1c8r9" class="border2"></td>	</tr>
+
+				<tr>	<td id="table1c0r10" class="border2"></td>	<td id="table1c1r10" class="border2"></td>	<td id="table1c2r10" class="border2"></td>		<td id="table1c3r10" class="border2">	</td>		<td id="table1c4r10" class="border2">	</td>	<td id="table1c5r10" class="border2"></td> 	<td id="table1c6r10" class="border2"></td> 	<td id="table1c7r10" class="border2"></td>	<td id="table1c8r10" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r11" class="border2"></td>	<td id="table1c1r11" class="border2"></td>	<td id="table1c2r11" class="border2"></td>		<td id="table1c3r11" class="border2">	</td>		<td id="table1c4r11" class="border2">	</td>	<td id="table1c5r11" class="border2"></td>	<td id="table1c6r11" class="border2"></td>	<td id="table1c7r11" class="border2"></td> 	<td id="table1c8r11" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r12" class="border2"></td>	<td id="table1c1r12" class="border2"></td>	<td id="table1c2r12" class="border2"></td>		<td id="table1c3r12" class="border2">	</td>		<td id="table1c4r12" class="border2">	</td>	<td id="table1c5r12" class="border2"></td> 	<td id="table1c6r12" class="border2"></td>	<td id="table1c7r12" class="border2"></td> 	<td id="table1c8r12" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r13" class="border2"></td>	<td id="table1c1r13" class="border2"></td>	<td id="table1c2r13" class="border2"></td>		<td id="table1c3r13" class="border2">	</td>		<td id="table1c4r13" class="border2">	</td>	<td id="table1c5r13" class="border2"></td> 	<td id="table1c6r13" class="border2"></td> 	<td id="table1c7r13" class="border2"></td>	<td id="table1c8r13" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r14" class="border2"></td>	<td id="table1c1r14" class="border2"></td>	<td id="table1c2r14" class="border2"></td>		<td id="table1c3r14" class="border2">	</td>		<td id="table1c4r14" class="border2">	</td>	<td id="table1c5r14" class="border2"></td>	<td id="table1c6r14" class="border2"></td>	<td id="table1c7r14" class="border2"></td> 	<td id="table1c8r14" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r15" class="border2"></td>	<td id="table1c1r15" class="border2"></td>	<td id="table1c2r15" class="border2"></td>		<td id="table1c3r15" class="border2">	</td>		<td id="table1c4r15" class="border2">	</td>	<td id="table1c5r15" class="border2"></td> 	<td id="table1c6r15" class="border2"></td>	<td id="table1c7r15" class="border2"></td> 	<td id="table1c8r15" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r16" class="border2"></td>	<td id="table1c1r16" class="border2"></td>	<td id="table1c2r16" class="border2"></td>		<td id="table1c3r16" class="border2">	</td>		<td id="table1c4r16" class="border2">	</td>	<td id="table1c5r16" class="border2"></td> 	<td id="table1c6r16" class="border2"></td> 	<td id="table1c7r16" class="border2"></td>	<td id="table1c8r16" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r17" class="border2"></td>	<td id="table1c1r17" class="border2"></td>	<td id="table1c2r17" class="border2"></td>		<td id="table1c3r17" class="border2">	</td>		<td id="table1c4r17" class="border2">	</td>	<td id="table1c5r17" class="border2"></td>	<td id="table1c6r17" class="border2"></td>	<td id="table1c7r17" class="border2"></td> 	<td id="table1c8r17" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r18" class="border2"></td>	<td id="table1c1r18" class="border2"></td>	<td id="table1c2r18" class="border2"></td>		<td id="table1c3r18" class="border2">	</td>		<td id="table1c4r18" class="border2">	</td>	<td id="table1c5r18" class="border2"></td> 	<td id="table1c6r18" class="border2"></td>	<td id="table1c7r18" class="border2"></td>	<td id="table1c8r18" class="border2"></td> 	</tr>
+				<tr>	<td id="table1c0r19" class="border2"></td>	<td id="table1c1r19" class="border2"></td>	<td id="table1c2r19" class="border2"></td>		<td id="table1c3r19" class="border2">	</td>		<td id="table1c4r19" class="border2">	</td>	<td id="table1c5r19" class="border2"></td> 	<td id="table1c6r19" class="border2"></td> 	<td id="table1c7r19" class="border2"></td>	<td id="table1c8r19" class="border2"></td>	</tr>
+
+				<tr>	<td id="table1c0r20" class="border2"></td>	<td id="table1c1r20" class="border2"></td>	<td id="table1c2r20" class="border2"></td>		<td id="table1c3r20" class="border2">	</td>		<td id="table1c4r20" class="border2">	</td>	<td id="table1c5r20" class="border2"></td> 	<td id="table1c6r20" class="border2"></td> 	<td id="table1c7r20" class="border2"></td>	<td id="table1c8r20" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r21" class="border2"></td>	<td id="table1c1r21" class="border2"></td>	<td id="table1c2r21" class="border2"></td>		<td id="table1c3r21" class="border2">	</td>		<td id="table1c4r21" class="border2">	</td>	<td id="table1c5r21" class="border2"></td>	<td id="table1c6r21" class="border2"></td>	<td id="table1c7r21" class="border2"></td>	<td id="table1c8r21" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r22" class="border2"></td>	<td id="table1c1r22" class="border2"></td>	<td id="table1c2r22" class="border2"></td>		<td id="table1c3r22" class="border2">	</td>		<td id="table1c4r22" class="border2">	</td>	<td id="table1c5r22" class="border2"></td> 	<td id="table1c6r22" class="border2"></td>	<td id="table1c7r22" class="border2"></td>	<td id="table1c8r22" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r23" class="border2"></td>	<td id="table1c1r23" class="border2"></td>	<td id="table1c2r23" class="border2"></td>		<td id="table1c3r23" class="border2">	</td>		<td id="table1c4r23" class="border2">	</td>	<td id="table1c5r23" class="border2"></td> 	<td id="table1c6r23" class="border2"></td> 	<td id="table1c7r23" class="border2"></td>	<td id="table1c8r23" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r24" class="border2"></td>	<td id="table1c1r24" class="border2"></td>	<td id="table1c2r24" class="border2"></td>		<td id="table1c3r24" class="border2">	</td>		<td id="table1c4r24" class="border2">	</td>	<td id="table1c5r24" class="border2"></td>	<td id="table1c6r24" class="border2"></td>	<td id="table1c7r24" class="border2"></td>	<td id="table1c8r24" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r25" class="border2"></td>	<td id="table1c1r25" class="border2"></td>	<td id="table1c2r25" class="border2"></td>		<td id="table1c3r25" class="border2">	</td>		<td id="table1c4r25" class="border2">	</td>	<td id="table1c5r25" class="border2"></td> 	<td id="table1c6r25" class="border2"></td>	<td id="table1c7r25" class="border2"></td>	<td id="table1c8r25" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r26" class="border2"></td>	<td id="table1c1r26" class="border2"></td>	<td id="table1c2r26" class="border2"></td>		<td id="table1c3r26" class="border2">	</td>		<td id="table1c4r26" class="border2">	</td>	<td id="table1c5r26" class="border2"></td> 	<td id="table1c6r26" class="border2"></td> 	<td id="table1c7r26" class="border2"></td>	<td id="table1c8r26" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r27" class="border2"></td>	<td id="table1c1r27" class="border2"></td>	<td id="table1c2r27" class="border2"></td>		<td id="table1c3r27" class="border2">	</td>		<td id="table1c4r27" class="border2">	</td>	<td id="table1c5r27" class="border2"></td>	<td id="table1c6r27" class="border2"></td>	<td id="table1c7r27" class="border2"></td>	<td id="table1c8r27" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r28" class="border2"></td>	<td id="table1c1r28" class="border2"></td>	<td id="table1c2r28" class="border2"></td>		<td id="table1c3r28" class="border2">	</td>		<td id="table1c4r28" class="border2">	</td>	<td id="table1c5r28" class="border2"></td> 	<td id="table1c6r28" class="border2"></td>	<td id="table1c7r28" class="border2"></td>	<td id="table1c8r28" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r29" class="border2"></td>	<td id="table1c1r29" class="border2"></td>	<td id="table1c2r29" class="border2"></td>		<td id="table1c3r29" class="border2">	</td>		<td id="table1c4r29" class="border2">	</td>	<td id="table1c5r29" class="border2"></td> 	<td id="table1c6r29" class="border2"></td> 	<td id="table1c7r29" class="border2"></td>	<td id="table1c8r29" class="border2"></td>	</tr>
+
+				<tr>	<td id="table1c0r30" class="border2"></td>	<td id="table1c1r30" class="border2"></td>	<td id="table1c2r30" class="border2"></td>		<td id="table1c3r30" class="border2">	</td>		<td id="table1c4r30" class="border2">	</td>	<td id="table1c5r30" class="border2"></td> 	<td id="table1c6r30" class="border2"></td> 	<td id="table1c7r30" class="border2"></td>	<td id="table1c8r30" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r31" class="border2"></td>	<td id="table1c1r31" class="border2"></td>	<td id="table1c2r31" class="border2"></td>		<td id="table1c3r31" class="border2">	</td>		<td id="table1c4r31" class="border2">	</td>	<td id="table1c5r31" class="border2"></td>	<td id="table1c6r31" class="border2"></td>	<td id="table1c7r31" class="border2"></td>	<td id="table1c8r31" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r32" class="border2"></td>	<td id="table1c1r32" class="border2"></td>	<td id="table1c2r32" class="border2"></td>		<td id="table1c3r32" class="border2">	</td>		<td id="table1c4r32" class="border2">	</td>	<td id="table1c5r32" class="border2"></td> 	<td id="table1c6r32" class="border2"></td>	<td id="table1c7r32" class="border2"></td>	<td id="table1c8r32" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r33" class="border2"></td>	<td id="table1c1r33" class="border2"></td>	<td id="table1c2r33" class="border2"></td>		<td id="table1c3r33" class="border2">	</td>		<td id="table1c4r33" class="border2">	</td>	<td id="table1c5r33" class="border2"></td> 	<td id="table1c6r33" class="border2"></td> 	<td id="table1c7r33" class="border2"></td>	<td id="table1c8r33" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r34" class="border2"></td>	<td id="table1c1r34" class="border2"></td>	<td id="table1c2r34" class="border2"></td>		<td id="table1c3r34" class="border2">	</td>		<td id="table1c4r34" class="border2">	</td>	<td id="table1c5r34" class="border2"></td>	<td id="table1c6r34" class="border2"></td>	<td id="table1c7r34" class="border2"></td>	<td id="table1c8r34" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r35" class="border2"></td>	<td id="table1c1r35" class="border2"></td>	<td id="table1c2r35" class="border2"></td>		<td id="table1c3r35" class="border2">	</td>		<td id="table1c4r35" class="border2">	</td>	<td id="table1c5r35" class="border2"></td> 	<td id="table1c6r35" class="border2"></td>	<td id="table1c7r35" class="border2"></td>	<td id="table1c8r35" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r36" class="border2"></td>	<td id="table1c1r36" class="border2"></td>	<td id="table1c2r36" class="border2"></td>		<td id="table1c3r36" class="border2">	</td>		<td id="table1c4r36" class="border2">	</td>	<td id="table1c5r36" class="border2"></td> 	<td id="table1c6r36" class="border2"></td> 	<td id="table1c7r36" class="border2"></td>	<td id="table1c8r36" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r37" class="border2"></td>	<td id="table1c1r37" class="border2"></td>	<td id="table1c2r37" class="border2"></td>		<td id="table1c3r37" class="border2">	</td>		<td id="table1c4r37" class="border2">	</td>	<td id="table1c5r37" class="border2"></td>	<td id="table1c6r37" class="border2"></td>	<td id="table1c7r37" class="border2"></td>	<td id="table1c8r37" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r38" class="border2"></td>	<td id="table1c1r38" class="border2"></td>	<td id="table1c2r38" class="border2"></td>		<td id="table1c3r38" class="border2">	</td>		<td id="table1c4r38" class="border2">	</td>	<td id="table1c5r38" class="border2"></td> 	<td id="table1c6r38" class="border2"></td>	<td id="table1c7r38" class="border2"></td>	<td id="table1c8r38" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r39" class="border2"></td>	<td id="table1c1r39" class="border2"></td>	<td id="table1c2r39" class="border2"></td>		<td id="table1c3r39" class="border2">	</td>		<td id="table1c4r39" class="border2">	</td>	<td id="table1c5r39" class="border2"></td> 	<td id="table1c6r39" class="border2"></td> 	<td id="table1c7r39" class="border2"></td>	<td id="table1c8r39" class="border2"></td>	</tr>
+
+				<tr>	<td id="table1c0r40" class="border2"></td>	<td id="table1c1r40" class="border2"></td>	<td id="table1c2r40" class="border2"></td>		<td id="table1c3r40" class="border2">	</td>		<td id="table1c4r40" class="border2">	</td>	<td id="table1c5r40" class="border2"></td> 	<td id="table1c6r40" class="border2"></td> 	<td id="table1c7r40" class="border2"></td>	<td id="table1c8r40" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r41" class="border2"></td>	<td id="table1c1r41" class="border2"></td>	<td id="table1c2r41" class="border2"></td>		<td id="table1c3r41" class="border2">	</td>		<td id="table1c4r41" class="border2">	</td>	<td id="table1c5r41" class="border2"></td>	<td id="table1c6r41" class="border2"></td>	<td id="table1c7r41" class="border2"></td>	<td id="table1c8r41" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r42" class="border2"></td>	<td id="table1c1r42" class="border2"></td>	<td id="table1c2r42" class="border2"></td>		<td id="table1c3r42" class="border2">	</td>		<td id="table1c4r42" class="border2">	</td>	<td id="table1c5r42" class="border2"></td> 	<td id="table1c6r42" class="border2"></td>	<td id="table1c7r42" class="border2"></td>	<td id="table1c8r42" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r43" class="border2"></td>	<td id="table1c1r43" class="border2"></td>	<td id="table1c2r43" class="border2"></td>		<td id="table1c3r43" class="border2">	</td>		<td id="table1c4r43" class="border2">	</td>	<td id="table1c5r43" class="border2"></td> 	<td id="table1c6r43" class="border2"></td> 	<td id="table1c7r43" class="border2"></td>	<td id="table1c8r43" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r44" class="border2"></td>	<td id="table1c1r44" class="border2"></td>	<td id="table1c2r44" class="border2"></td>		<td id="table1c3r44" class="border2">	</td>		<td id="table1c4r44" class="border2">	</td>	<td id="table1c5r44" class="border2"></td>	<td id="table1c6r44" class="border2"></td>	<td id="table1c7r44" class="border2"></td>	<td id="table1c8r44" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r45" class="border2"></td>	<td id="table1c1r45" class="border2"></td>	<td id="table1c2r45" class="border2"></td>		<td id="table1c3r45" class="border2">	</td>		<td id="table1c4r45" class="border2">	</td>	<td id="table1c5r45" class="border2"></td> 	<td id="table1c6r45" class="border2"></td>	<td id="table1c7r45" class="border2"></td>	<td id="table1c8r45" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r46" class="border2"></td>	<td id="table1c1r46" class="border2"></td>	<td id="table1c2r46" class="border2"></td>		<td id="table1c3r46" class="border2">	</td>		<td id="table1c4r46" class="border2">	</td>	<td id="table1c5r46" class="border2"></td> 	<td id="table1c6r46" class="border2"></td> 	<td id="table1c7r46" class="border2"></td>	<td id="table1c8r46" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r47" class="border2"></td>	<td id="table1c1r47" class="border2"></td>	<td id="table1c2r47" class="border2"></td>		<td id="table1c3r47" class="border2">	</td>		<td id="table1c4r47" class="border2">	</td>	<td id="table1c5r47" class="border2"></td>	<td id="table1c6r47" class="border2"></td>	<td id="table1c7r47" class="border2"></td>	<td id="table1c8r47" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r48" class="border2"></td>	<td id="table1c1r48" class="border2"></td>	<td id="table1c2r48" class="border2"></td>		<td id="table1c3r48" class="border2">	</td>		<td id="table1c4r48" class="border2">	</td>	<td id="table1c5r48" class="border2"></td> 	<td id="table1c6r48" class="border2"></td>	<td id="table1c7r48" class="border2"></td>	<td id="table1c8r48" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r49" class="border2"></td>	<td id="table1c1r49" class="border2"></td>	<td id="table1c2r49" class="border2"></td>		<td id="table1c3r49" class="border2">	</td>		<td id="table1c4r49" class="border2">	</td>	<td id="table1c5r49" class="border2"></td> 	<td id="table1c6r49" class="border2"></td> 	<td id="table1c7r49" class="border2"></td>	<td id="table1c8r49" class="border2"></td>	</tr>
+
+				<tr>	<td id="table1c0r50" class="border2"></td>	<td id="table1c1r50" class="border2"></td>	<td id="table1c2r50" class="border2"></td>		<td id="table1c3r50" class="border2">	</td>		<td id="table1c4r50" class="border2">	</td>	<td id="table1c5r50" class="border2"></td> 	<td id="table1c6r50" class="border2"></td> 	<td id="table1c7r50" class="border2"></td>	<td id="table1c8r50" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r51" class="border2"></td>	<td id="table1c1r51" class="border2"></td>	<td id="table1c2r51" class="border2"></td>		<td id="table1c3r51" class="border2">	</td>		<td id="table1c4r51" class="border2">	</td>	<td id="table1c5r51" class="border2"></td>	<td id="table1c6r51" class="border2"></td>	<td id="table1c7r51" class="border2"></td>	<td id="table1c8r51" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r52" class="border2"></td>	<td id="table1c1r52" class="border2"></td>	<td id="table1c2r52" class="border2"></td>		<td id="table1c3r52" class="border2">	</td>		<td id="table1c4r52" class="border2">	</td>	<td id="table1c5r52" class="border2"></td> 	<td id="table1c6r52" class="border2"></td>	<td id="table1c7r52" class="border2"></td>	<td id="table1c8r52" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r53" class="border2"></td>	<td id="table1c1r53" class="border2"></td>	<td id="table1c2r53" class="border2"></td>		<td id="table1c3r53" class="border2">	</td>		<td id="table1c4r53" class="border2">	</td>	<td id="table1c5r53" class="border2"></td> 	<td id="table1c6r53" class="border2"></td> 	<td id="table1c7r53" class="border2"></td>	<td id="table1c8r53" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r54" class="border2"></td>	<td id="table1c1r54" class="border2"></td>	<td id="table1c2r54" class="border2"></td>		<td id="table1c3r54" class="border2">	</td>		<td id="table1c4r54" class="border2">	</td>	<td id="table1c5r54" class="border2"></td>	<td id="table1c6r54" class="border2"></td>	<td id="table1c7r54" class="border2"></td>	<td id="table1c8r54" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r55" class="border2"></td>	<td id="table1c1r55" class="border2"></td>	<td id="table1c2r55" class="border2"></td>		<td id="table1c3r55" class="border2">	</td>		<td id="table1c4r55" class="border2">	</td>	<td id="table1c5r55" class="border2"></td> 	<td id="table1c6r55" class="border2"></td>	<td id="table1c7r55" class="border2"></td>	<td id="table1c8r55" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r56" class="border2"></td>	<td id="table1c1r56" class="border2"></td>	<td id="table1c2r56" class="border2"></td>		<td id="table1c3r56" class="border2">	</td>		<td id="table1c4r56" class="border2">	</td>	<td id="table1c5r56" class="border2"></td> 	<td id="table1c6r56" class="border2"></td> 	<td id="table1c7r56" class="border2"></td>	<td id="table1c8r56" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r57" class="border2"></td>	<td id="table1c1r57" class="border2"></td>	<td id="table1c2r57" class="border2"></td>		<td id="table1c3r57" class="border2">	</td>		<td id="table1c4r57" class="border2">	</td>	<td id="table1c5r57" class="border2"></td>	<td id="table1c6r57" class="border2"></td>	<td id="table1c7r57" class="border2"></td>	<td id="table1c8r57" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r58" class="border2"></td>	<td id="table1c1r58" class="border2"></td>	<td id="table1c2r58" class="border2"></td>		<td id="table1c3r58" class="border2">	</td>		<td id="table1c4r58" class="border2">	</td>	<td id="table1c5r58" class="border2"></td> 	<td id="table1c6r58" class="border2"></td>	<td id="table1c7r58" class="border2"></td>	<td id="table1c8r58" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r59" class="border2"></td>	<td id="table1c1r59" class="border2"></td>	<td id="table1c2r59" class="border2"></td>		<td id="table1c3r59" class="border2">	</td>		<td id="table1c4r59" class="border2">	</td>	<td id="table1c5r59" class="border2"></td> 	<td id="table1c6r59" class="border2"></td> 	<td id="table1c7r59" class="border2"></td>	<td id="table1c8r59" class="border2"></td>	</tr>
+
+				<tr>	<td id="table1c0r60" class="border2"></td>	<td id="table1c1r60" class="border2"></td>	<td id="table1c2r60" class="border2"></td>		<td id="table1c3r60" class="border2">	</td>		<td id="table1c4r60" class="border2">	</td>	<td id="table1c5r60" class="border2"></td> 	<td id="table1c6r60" class="border2"></td> 	<td id="table1c7r60" class="border2"></td>	<td id="table1c8r60" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r61" class="border2"></td>	<td id="table1c1r61" class="border2"></td>	<td id="table1c2r61" class="border2"></td>		<td id="table1c3r61" class="border2">	</td>		<td id="table1c4r61" class="border2">	</td>	<td id="table1c5r61" class="border2"></td>	<td id="table1c6r61" class="border2"></td>	<td id="table1c7r61" class="border2"></td>	<td id="table1c8r61" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r62" class="border2"></td>	<td id="table1c1r62" class="border2"></td>	<td id="table1c2r62" class="border2"></td>		<td id="table1c3r62" class="border2">	</td>		<td id="table1c4r62" class="border2">	</td>	<td id="table1c5r62" class="border2"></td> 	<td id="table1c6r62" class="border2"></td>	<td id="table1c7r62" class="border2"></td>	<td id="table1c8r62" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r63" class="border2"></td>	<td id="table1c1r63" class="border2"></td>	<td id="table1c2r63" class="border2"></td>		<td id="table1c3r63" class="border2">	</td>		<td id="table1c4r63" class="border2">	</td>	<td id="table1c5r63" class="border2"></td> 	<td id="table1c6r63" class="border2"></td> 	<td id="table1c7r63" class="border2"></td>	<td id="table1c8r63" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r64" class="border2"></td>	<td id="table1c1r64" class="border2"></td>	<td id="table1c2r64" class="border2"></td>		<td id="table1c3r64" class="border2">	</td>		<td id="table1c4r64" class="border2">	</td>	<td id="table1c5r64" class="border2"></td>	<td id="table1c6r64" class="border2"></td>	<td id="table1c7r64" class="border2"></td>	<td id="table1c8r64" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r65" class="border2"></td>	<td id="table1c1r65" class="border2"></td>	<td id="table1c2r65" class="border2"></td>		<td id="table1c3r65" class="border2">	</td>		<td id="table1c4r65" class="border2">	</td>	<td id="table1c5r65" class="border2"></td> 	<td id="table1c6r65" class="border2"></td>	<td id="table1c7r65" class="border2"></td>	<td id="table1c8r65" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r66" class="border2"></td>	<td id="table1c1r66" class="border2"></td>	<td id="table1c2r66" class="border2"></td>		<td id="table1c3r66" class="border2">	</td>		<td id="table1c4r66" class="border2">	</td>	<td id="table1c5r66" class="border2"></td> 	<td id="table1c6r66" class="border2"></td> 	<td id="table1c7r66" class="border2"></td>	<td id="table1c8r66" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r67" class="border2"></td>	<td id="table1c1r67" class="border2"></td>	<td id="table1c2r67" class="border2"></td>		<td id="table1c3r67" class="border2">	</td>		<td id="table1c4r67" class="border2">	</td>	<td id="table1c5r67" class="border2"></td>	<td id="table1c6r67" class="border2"></td>	<td id="table1c7r67" class="border2"></td>	<td id="table1c8r67" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r68" class="border2"></td>	<td id="table1c1r68" class="border2"></td>	<td id="table1c2r68" class="border2"></td>		<td id="table1c3r68" class="border2">	</td>		<td id="table1c4r68" class="border2">	</td>	<td id="table1c5r68" class="border2"></td> 	<td id="table1c6r68" class="border2"></td>	<td id="table1c7r68" class="border2"></td>	<td id="table1c8r68" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r69" class="border2"></td>	<td id="table1c1r69" class="border2"></td>	<td id="table1c2r69" class="border2"></td>		<td id="table1c3r69" class="border2">	</td>		<td id="table1c4r69" class="border2">	</td>	<td id="table1c5r69" class="border2"></td> 	<td id="table1c6r69" class="border2"></td> 	<td id="table1c7r69" class="border2"></td>	<td id="table1c8r69" class="border2"></td>	</tr>
+
+				<tr>	<td id="table1c0r70" class="border2"></td>	<td id="table1c1r70" class="border2"></td>	<td id="table1c2r70" class="border2"></td>		<td id="table1c3r70" class="border2">	</td>		<td id="table1c4r70" class="border2">	</td>	<td id="table1c5r70" class="border2"></td> 	<td id="table1c6r70" class="border2"></td> 	<td id="table1c7r70" class="border2"></td>	<td id="table1c8r70" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r71" class="border2"></td>	<td id="table1c1r71" class="border2"></td>	<td id="table1c2r71" class="border2"></td>		<td id="table1c3r71" class="border2">	</td>		<td id="table1c4r71" class="border2">	</td>	<td id="table1c5r71" class="border2"></td>	<td id="table1c6r71" class="border2"></td>	<td id="table1c7r71" class="border2"></td>	<td id="table1c8r71" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r72" class="border2"></td>	<td id="table1c1r72" class="border2"></td>	<td id="table1c2r72" class="border2"></td>		<td id="table1c3r72" class="border2">	</td>		<td id="table1c4r72" class="border2">	</td>	<td id="table1c5r72" class="border2"></td> 	<td id="table1c6r72" class="border2"></td>	<td id="table1c7r72" class="border2"></td>	<td id="table1c8r72" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r73" class="border2"></td>	<td id="table1c1r73" class="border2"></td>	<td id="table1c2r73" class="border2"></td>		<td id="table1c3r73" class="border2">	</td>		<td id="table1c4r73" class="border2">	</td>	<td id="table1c5r73" class="border2"></td> 	<td id="table1c6r73" class="border2"></td> 	<td id="table1c7r73" class="border2"></td>	<td id="table1c8r73" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r74" class="border2"></td>	<td id="table1c1r74" class="border2"></td>	<td id="table1c2r74" class="border2"></td>		<td id="table1c3r74" class="border2">	</td>		<td id="table1c4r74" class="border2">	</td>	<td id="table1c5r74" class="border2"></td>	<td id="table1c6r74" class="border2"></td>	<td id="table1c7r74" class="border2"></td>	<td id="table1c8r74" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r75" class="border2"></td>	<td id="table1c1r75" class="border2"></td>	<td id="table1c2r75" class="border2"></td>		<td id="table1c3r75" class="border2">	</td>		<td id="table1c4r75" class="border2">	</td>	<td id="table1c5r75" class="border2"></td> 	<td id="table1c6r75" class="border2"></td>	<td id="table1c7r75" class="border2"></td>	<td id="table1c8r75" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r76" class="border2"></td>	<td id="table1c1r76" class="border2"></td>	<td id="table1c2r76" class="border2"></td>		<td id="table1c3r76" class="border2">	</td>		<td id="table1c4r76" class="border2">	</td>	<td id="table1c5r76" class="border2"></td> 	<td id="table1c6r76" class="border2"></td> 	<td id="table1c7r76" class="border2"></td>	<td id="table1c8r76" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r77" class="border2"></td>	<td id="table1c1r77" class="border2"></td>	<td id="table1c2r77" class="border2"></td>		<td id="table1c3r77" class="border2">	</td>		<td id="table1c4r77" class="border2">	</td>	<td id="table1c5r77" class="border2"></td>	<td id="table1c6r77" class="border2"></td>	<td id="table1c7r77" class="border2"></td>	<td id="table1c8r77" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r78" class="border2"></td>	<td id="table1c1r78" class="border2"></td>	<td id="table1c2r78" class="border2"></td>		<td id="table1c3r78" class="border2">	</td>		<td id="table1c4r78" class="border2">	</td>	<td id="table1c5r78" class="border2"></td> 	<td id="table1c6r78" class="border2"></td>	<td id="table1c7r78" class="border2"></td>	<td id="table1c8r78" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r79" class="border2"></td>	<td id="table1c1r79" class="border2"></td>	<td id="table1c2r79" class="border2"></td>		<td id="table1c3r79" class="border2">	</td>		<td id="table1c4r79" class="border2">	</td>	<td id="table1c5r79" class="border2"></td> 	<td id="table1c6r79" class="border2"></td> 	<td id="table1c7r79" class="border2"></td>	<td id="table1c8r79" class="border2"></td>	</tr>
+
+				<tr>	<td id="table1c0r80" class="border2"></td>	<td id="table1c1r80" class="border2"></td>	<td id="table1c2r80" class="border2"></td>		<td id="table1c3r80" class="border2">	</td>		<td id="table1c4r80" class="border2">	</td>	<td id="table1c5r80" class="border2"></td> 	<td id="table1c6r80" class="border2"></td> 	<td id="table1c7r80" class="border2"></td>	<td id="table1c8r80" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r81" class="border2"></td>	<td id="table1c1r81" class="border2"></td>	<td id="table1c2r81" class="border2"></td>		<td id="table1c3r81" class="border2">	</td>		<td id="table1c4r81" class="border2">	</td>	<td id="table1c5r81" class="border2"></td>	<td id="table1c6r81" class="border2"></td>	<td id="table1c7r81" class="border2"></td>	<td id="table1c8r81" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r82" class="border2"></td>	<td id="table1c1r82" class="border2"></td>	<td id="table1c2r82" class="border2"></td>		<td id="table1c3r82" class="border2">	</td>		<td id="table1c4r82" class="border2">	</td>	<td id="table1c5r82" class="border2"></td> 	<td id="table1c6r82" class="border2"></td>	<td id="table1c7r82" class="border2"></td>	<td id="table1c8r82" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r83" class="border2"></td>	<td id="table1c1r83" class="border2"></td>	<td id="table1c2r83" class="border2"></td>		<td id="table1c3r83" class="border2">	</td>		<td id="table1c4r83" class="border2">	</td>	<td id="table1c5r83" class="border2"></td> 	<td id="table1c6r83" class="border2"></td> 	<td id="table1c7r83" class="border2"></td>	<td id="table1c8r83" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r84" class="border2"></td>	<td id="table1c1r84" class="border2"></td>	<td id="table1c2r84" class="border2"></td>		<td id="table1c3r84" class="border2">	</td>		<td id="table1c4r84" class="border2">	</td>	<td id="table1c5r84" class="border2"></td>	<td id="table1c6r84" class="border2"></td>	<td id="table1c7r84" class="border2"></td>	<td id="table1c8r84" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r85" class="border2"></td>	<td id="table1c1r85" class="border2"></td>	<td id="table1c2r85" class="border2"></td>		<td id="table1c3r85" class="border2">	</td>		<td id="table1c4r85" class="border2">	</td>	<td id="table1c5r85" class="border2"></td> 	<td id="table1c6r85" class="border2"></td>	<td id="table1c7r85" class="border2"></td>	<td id="table1c8r85" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r86" class="border2"></td>	<td id="table1c1r86" class="border2"></td>	<td id="table1c2r86" class="border2"></td>		<td id="table1c3r86" class="border2">	</td>		<td id="table1c4r86" class="border2">	</td>	<td id="table1c5r86" class="border2"></td> 	<td id="table1c6r86" class="border2"></td> 	<td id="table1c7r86" class="border2"></td>	<td id="table1c8r86" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r87" class="border2"></td>	<td id="table1c1r87" class="border2"></td>	<td id="table1c2r87" class="border2"></td>		<td id="table1c3r87" class="border2">	</td>		<td id="table1c4r87" class="border2">	</td>	<td id="table1c5r87" class="border2"></td>	<td id="table1c6r87" class="border2"></td>	<td id="table1c7r87" class="border2"></td>	<td id="table1c8r87" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r88" class="border2"></td>	<td id="table1c1r88" class="border2"></td>	<td id="table1c2r88" class="border2"></td>		<td id="table1c3r88" class="border2">	</td>		<td id="table1c4r88" class="border2">	</td>	<td id="table1c5r88" class="border2"></td> 	<td id="table1c6r88" class="border2"></td>	<td id="table1c7r88" class="border2"></td>	<td id="table1c8r88" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r89" class="border2"></td>	<td id="table1c1r89" class="border2"></td>	<td id="table1c2r89" class="border2"></td>		<td id="table1c3r89" class="border2">	</td>		<td id="table1c4r89" class="border2">	</td>	<td id="table1c5r89" class="border2"></td> 	<td id="table1c6r89" class="border2"></td> 	<td id="table1c7r89" class="border2"></td>	<td id="table1c8r89" class="border2"></td>	</tr>
+
+				<tr>	<td id="table1c0r90" class="border2"></td>	<td id="table1c1r90" class="border2"></td>	<td id="table1c2r90" class="border2"></td>		<td id="table1c3r90" class="border2">	</td>		<td id="table1c4r90" class="border2">	</td>	<td id="table1c5r90" class="border2"></td> 	<td id="table1c6r90" class="border2"></td> 	<td id="table1c7r90" class="border2"></td>	<td id="table1c8r90" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r91" class="border2"></td>	<td id="table1c1r91" class="border2"></td>	<td id="table1c2r91" class="border2"></td>		<td id="table1c3r91" class="border2">	</td>		<td id="table1c4r91" class="border2">	</td>	<td id="table1c5r91" class="border2"></td>	<td id="table1c6r91" class="border2"></td>	<td id="table1c7r91" class="border2"></td>	<td id="table1c8r91" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r92" class="border2"></td>	<td id="table1c1r92" class="border2"></td>	<td id="table1c2r92" class="border2"></td>		<td id="table1c3r92" class="border2">	</td>		<td id="table1c4r92" class="border2">	</td>	<td id="table1c5r92" class="border2"></td> 	<td id="table1c6r92" class="border2"></td>	<td id="table1c7r92" class="border2"></td>	<td id="table1c8r92" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r93" class="border2"></td>	<td id="table1c1r93" class="border2"></td>	<td id="table1c2r93" class="border2"></td>		<td id="table1c3r93" class="border2">	</td>		<td id="table1c4r93" class="border2">	</td>	<td id="table1c5r93" class="border2"></td> 	<td id="table1c6r93" class="border2"></td> 	<td id="table1c7r93" class="border2"></td>	<td id="table1c8r93" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r94" class="border2"></td>	<td id="table1c1r94" class="border2"></td>	<td id="table1c2r94" class="border2"></td>		<td id="table1c3r94" class="border2">	</td>		<td id="table1c4r94" class="border2">	</td>	<td id="table1c5r94" class="border2"></td>	<td id="table1c6r94" class="border2"></td>	<td id="table1c7r94" class="border2"></td>	<td id="table1c8r94" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r95" class="border2"></td>	<td id="table1c1r95" class="border2"></td>	<td id="table1c2r95" class="border2"></td>		<td id="table1c3r95" class="border2">	</td>		<td id="table1c4r95" class="border2">	</td>	<td id="table1c5r95" class="border2"></td> 	<td id="table1c6r95" class="border2"></td>	<td id="table1c7r95" class="border2"></td>	<td id="table1c8r95" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r96" class="border2"></td>	<td id="table1c1r96" class="border2"></td>	<td id="table1c2r96" class="border2"></td>		<td id="table1c3r96" class="border2">	</td>		<td id="table1c4r96" class="border2">	</td>	<td id="table1c5r96" class="border2"></td> 	<td id="table1c6r96" class="border2"></td> 	<td id="table1c7r96" class="border2"></td>	<td id="table1c8r96" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r97" class="border2"></td>	<td id="table1c1r97" class="border2"></td>	<td id="table1c2r97" class="border2"></td>		<td id="table1c3r97" class="border2">	</td>		<td id="table1c4r97" class="border2">	</td>	<td id="table1c5r97" class="border2"></td>	<td id="table1c6r97" class="border2"></td>	<td id="table1c7r97" class="border2"></td>	<td id="table1c8r97" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r98" class="border2"></td>	<td id="table1c1r98" class="border2"></td>	<td id="table1c2r98" class="border2"></td>		<td id="table1c3r98" class="border2">	</td>		<td id="table1c4r98" class="border2">	</td>	<td id="table1c5r98" class="border2"></td> 	<td id="table1c6r98" class="border2"></td>	<td id="table1c7r98" class="border2"></td>	<td id="table1c8r98" class="border2"></td>	</tr>
+				<tr>	<td id="table1c0r99" class="border2"></td>	<td id="table1c1r99" class="border2"></td>	<td id="table1c2r99" class="border2"></td>		<td id="table1c3r99" class="border2">	</td>		<td id="table1c4r99" class="border2">	</td>	<td id="table1c5r99" class="border2"></td> 	<td id="table1c6r99" class="border2"></td> 	<td id="table1c7r99" class="border2"></td>	<td id="table1c8r99" class="border2"></td>	</tr>
+
+</table>
+<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Results Log table <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
+</div>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Second set of Buttons >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
+	<br>
+		<div class="center">
+			<button id="button4" type="button" class="buttonDarkseagreen" onclick="onAddButtonClick()">Add counts to file</button>
+			<button id="button5" type="button" class="buttonDarkseagreen" onclick="onSaveButtonClick()">Save counts to new file</button>
+			<button id="button6" type="button" class="buttonBlue" onclick="onDisplayCountButtonClick()">Back to Counter</button>
+		</div>
+<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Second set of Buttons <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Status Line 2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
+		<p id="sectionTwoStatus">
+		</p>
+<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Status Line 2 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
+<!-- <p> N.B. Number of past counts is limited to 5, for testing</p> -->
+		</div>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> End of Section2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>	-->
+<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< HTML <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	 -->
+    <script>
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> JavaScript >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+/*>>> >>>For pwabuilder >>>
+    if ('serviceWorker' in navigator) {
+      window.onload = () => {
+        navigator.serviceWorker.register(
+          '/sw.js'
+        );
+      }
+    }
+//<<<For pwabuilder <<<*/
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> GLOBAL VARIABLES >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+      let btDevice = null;
+     //let	btServiceId = '19b10010-e8f2-537e-4f6c-d104768a1214';				//Arduino 'EML Rain Gauge' Count service
+      let btServiceId='c1a8da08-1801-4e76-9a66-fe24dcdd5392';					//'EML Bluetooth Counter' Count service
+			let btGenericAccessServiceId = 0x1800;														//Generic access service for reading software revision number
+     //let	btCharacteristicId = '19b10012-e8f2-537e-4f6c-d104768a1214';	//Arduino 'EML Rain Gauge' Count characteristic
+      let btCharacteristicId='aec433d5-d7da-456e-bc1d-300fa61f0208';		//'EML Bluetooth Counter' Count characteristic
+			let btCounterSWVCharacteristicId=0x2A28; //Generic attribute - software revision number
+       let btService=null;
+      let btCharacteristic=null;
+      let btValue = new Int8Array (6);
+			let btCounterSoftwareVersion = null;
+			let countVal=0;
+      let lastCountVal=1;
+      let startTime=null;
+			let minutesVal=null;
+      let secondsVal=null;
+      let localMinutes=0;
+      let localSeconds=0;
+
+			let countingFlag=0;
+      let firstConnectFlag=1; //Tells the connect routine to reset the counter if this is the first time connecting since starting the app. Needed because local timer wont be running even if counter still has a count in it
+
+      //var displayLocalTime;
+      let btFileName = 'EML counter log'; //default save file name
+
+			let resultLogEntries = 0 ;
+
+//			const maxResultLogEntries = 100 ; //actual number of rows in table
+//			const maxResultLogEntries = 5 ;			//reduced number of entries to test and debug what happens when table is full
+			const maxResultLogEntries = 100 ;			//maximum number of count results which can be stored before they have to be written to file
+			const	maxResultLogColumns = 9 ;
+
+			const enable 	= 1 ;
+			const disable	= 0 ;
+
+			let countString="";
+			let countTimeString = "";
+			let localTimeString = "";
+      let siteNameString = "--";
+			let	gaugeIDString = "--";
+			let raingaugeDetailsString = "--";
+      let bottleVolumeString = "147"; //make the default value a number. Making it "--" causes a browser error because the input field is restricted to numbers only
+      let nozzleSizeString = "--";
+      let batteryString = "";
+			let resultLogString = "";
+			const csvSeparator = ",";
+			const csvSeparatorSub = ".";
+
+			const button1PrimaryString = "Connect Counter";
+			const button1SecondaryString = "Disconnect Counter";
+			const button2PrimaryString = "Stop Count";
+			const button2SecondaryString = "Reset Count";
+			const button2TertiaryString = "Cancel Reset";
+			const button3PrimaryString = "Show Counts";
+			const button3SecondaryString = "Keep Count";
+			const button4PrimaryString = "Add Counts to File";
+			const button5PrimaryString = "Save Counts to new file";
+			const button6PrimaryString = "Back to Counter";
+			const csvColumnHeadingsString ='Site' + csvSeparator + 'Gauge ID' + csvSeparator + 'Date' + csvSeparator + 'Time' + csvSeparator + 'Raingauge' + csvSeparator + 'Bottle volume (ml)' + csvSeparator + 'NozzleSize (mm)' + csvSeparator + 'Recorded Tips' + csvSeparator + 'Time Taken\r\n';
+
+			var tempString;
+			var periodicallyDisplayLocalTime;
+
+//>from bluetooth counter C code>
+			const BAT_STATUS_MSK          		= 0x80 //this bit is set to tell API that the battery data is battery status not battery % charge
+			const BAT_STATUS_GOOD_MSK     		= 0x08 //this bit is set to tell API that the battery charge is above the low battery threshhold
+			const BAT_STATUS_CHARGING_MSK 		= 0x04 //this bit is set to tell API that the battery is charging
+			const BAT_STATUS_USB_MSK      		= 0x02 //this bit is set to tell API that USB power is connected
+			const BAT_STATUS_BAT_PRESENT_MSK  = 0x01 //this bit is set to tell API that there is no battery fitted
+//			const button6PrimaryString = "View Count";
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< GLOBAL VARIABLES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//  		if(window.isSecureContext)
+//      			{
+//      				displaySection1StatusDebug('Document is secure','black');
+//      			}
+//      		else
+//      			{
+//      				displaySection1StatusDebug('Document is not secure','black');
+//      			}
+//		if(navigator.bluetooth.getAvailability())
+//      			{
+//
+//      				displaySection1StatusDebug('Bluetooth supported','black');
+//      				console.log('Bluetooth supported');
+//      			}
+//      		else
+//      			{
+//      				displaySection1StatusDebug('Bluetooth not supported on this device','black');
+//      				console.log('Bluetooth not supported on this device');
+//      			}
+//Start by checking for previous results which have not been saved to file>
+	if(localStorage.getItem("ResultLogString") != null) //if a copy of the resultLog has been stored locally
+		{
+			resultLogString = localStorage.getItem("ResultLogString");//the resultIndex will have been stored at the same time so restore that too
+		//Put the restored results back in the results log table
+			updateResultLogTable(0); //fill the results table from the first result position in the string(0) to the end of the resultLogString
+			enableDisableButton("button3",enable);
+		displaySection1Status("Connect counter","black");
+
+		}
+
+if(localStorage.getItem("siteNameString") != null) //if a copy of the resultLog has been stored locally
+		{
+			siteNameString = localStorage.getItem("siteNameString");
+//			document.getElementById("siteName").placeholder = siteNameString;
+			document.getElementById("siteName").value = siteNameString;
+
+		}
+if(localStorage.getItem("raingaugeDetailsString") != null) //if a copy of the resultLog has been stored locally
+		{
+			raingaugeDetailsString = localStorage.getItem("raingaugeDetailsString");
+//			document.getElementById("raingaugeDetails").placeholder = raingaugeDetailsString;
+			document.getElementById("raingaugeDetails").value = raingaugeDetailsString;
+		}
+if(localStorage.getItem("gaugeIDString") != null) //if a copy of the resultLog has been stored locally
+		{
+			gaugeIDString = localStorage.getItem("gaugeIDString");
+//			document.getElementById("gaugeID").placeholder = gaugeIDString;
+			document.getElementById("gaugeID").value = gaugeIDString;
+		}
+if(localStorage.getItem("bottleVolumeString") != null) //if a copy of the resultLog has been stored locally
+		{
+			bottleVolumeString = localStorage.getItem("bottleVolumeString");
+			document.getElementById("bottleVolume").value = bottleVolumeString;
+		}
+if(localStorage.getItem("nozzleSizeString") != null) //if a copy of the resultLog has been stored locally
+		{
+			nozzleSizeString = localStorage.getItem("nozzleSizeString");
+			document.getElementById("nozzleSize").value = nozzleSizeString;
+		}
+
+displaySection1Status("Connect counter","black");
+
+//set up event listeners for inputing Site name and raingauge details text (this can be done before connecting to a counter)
+	document.getElementById('siteName').addEventListener('input', function ()
+		{
+			siteNameString = this.value;
+		});
+
+document.getElementById('raingaugeDetails').addEventListener('input', function ()
+    {
+      raingaugeDetailsString = this.value;
+    });
+
+document.getElementById('gaugeID').addEventListener('input', function ()
+    {
+      gaugeIDString = this.value;
+    });
+
+document.getElementById('bottleVolume').addEventListener('input', function ()
+    {
+      bottleVolumeString = this.value;
+    });
+
+document.getElementById('nozzleSize').addEventListener('input', function ()
+    {
+      nozzleSizeString = this.value;
+    });
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onScanButtonCLick >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	async function onScanButtonClick()
+  	{
+    //If html id 'button1' == 'Connect'>
+  	//Change button text>>>
+			let btError = "A";
+			var button = document.getElementById('button1');
+      if(document.getElementById('button1').innerHTML === button1PrimaryString) //if no device is connected
+      	{
+					btError = "B";
+      		try
+      			{
+						//>Choose device>
+							btDevice = await navigator.bluetooth.requestDevice
+								({
+//							acceptAllDevices:true,
+      						filters:
+      							[
+      								{services: [btServiceId]}
+//      								{services: [btServiceId, btGenericAccessServiceId]}
+												//      								{name: "EMLCount"}
+      							],
+//      									optionalServices: [btServiceId],
+												optionalServices: [btGenericAccessServiceId]
+      					});
+      			//>start disconnection notifications in case disconnection happens unexpectedly>
+							btDevice.addEventListener('gattserverdisconnected',onDisconnect); //function call: onDisconnect
+						//>Device chosen, connect to it>
+							btError = "C";
+							btServer = await btDevice.gatt.connect();
+
+						//Connected, ask for the generic attribute service
+							btError = "I";
+//							btService = await btServer.getPrimaryService(btGenericAccessServiceId);
+//							console.log("btGenericAccessServiceId " + btService.uuid);
+      			//>Got the service, ask for software revision characteristic>
+//							btError = "J";
+//							btCharacteristic = await btService.getCharacteristic(btCounterSWVCharacteristicId);
+//							btCounterSoftwareVersion = await btCharacteristic.readValue(); //read the received software version characters
+//							btCounterSoftwareVersion = new TextDecoder().decode(btCounterSoftwareVersion); //convert the utf-8 characters into a string (i.e. adds a null to the end)
+//							console.log("Counter software version " + btCounterSoftwareVersion);
+						//New code here which requires modifications to the Counter PCB software will check the PCB software version is the same or higher before executing the new code>
+//							btCounterSoftwareVersion = parseFloat(btCounterSoftwareVersion); //Now convert the string to an floating point value to be checked before executing new code
+						//Now, ask for the count service
+							btError = "D";
+							btService = await btServer.getPrimaryService(btServiceId);
+//							console.log("btServiceId " + btService.uuid);
+      			//>Got the service, ask for count characteristic>
+							btError = "E";
+							btCharacteristic=await btService.getCharacteristic(btCharacteristicId);
+      			//>>> Got count characteristic (which should have read, write, and notify attributes enabled so start count notifications >>>
+							btError = "F";
+      				await btCharacteristic.startNotifications();
+						// Enable notification events from counter>
+							btError = "G";
+							await btCharacteristic.addEventListener('characteristicvaluechanged',handleCountNotification);
+						//ensure counter is reset>
+							btError = "H";
+							let resetVal=Uint8Array.of(0,0,0,0,0,0); //counter will reset tip count and its time values when it receives that as long as bytes 2 and 3 (the time value) is zero (otherwise this value is used to sync local time with coutner time)
+							await btCharacteristic.writeValueWithResponse(resetVal); //tell the counter to reset its tip count and time the counter should respeond with a notificaiton with count=0 time=0
+//							console.log("Reset sent");
+							lastCountVal=1; //set this to one so that when counter resets and then sends a notification with the count reset to 0, the displaycount function will display it
+						//Update display to indicate the device is connected>
+							button.innerText=button.textContent=button1SecondaryString; 				//>change button1 from 'Connect' 'Disconnect' (button1 is still selected from if statement above)
+							displaySection1Status("Waiting for count. Update Site/Raingauge/etc?","black");
+						//>display count, time of last tip and battery charge>
+							enableDisableCount(enable);	//indicate counter is connected by turning count data background from greyed out to blue
+						}
+      		catch(error)
+      			{
+      				console.log('Error: ' + btError + ' ' + error + ', code: ' + error.code + ', message: ' + error.message);
+      				console.log(' Service '+btCharacteristic.service.uuid
+      					+ ', uuid ' + btCharacteristic.uuid + ', Notify ' + btCharacteristic.properties.notify + ', Read ' + btCharacteristic.properties.read
+      					+ ', Value ' + btCharacteristic.value);
+      			}
+      	} //end of if button1 says 'Connect'
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> If html id 'button1' is displaying 'Disconnect'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+      else // if connected and therefore button1 is displaying 'Disconnect' disconnect
+      	{
+      		countVal=0;
+      		if(btDevice.gatt.connected) //if a bluetooth device is connected
+      			{
+      				try
+      					{
+								//stop disconnection events (otherwise disconnecting here will cause a disconnection event calling onDisconnect>
+									btError = "K";
+      						await btDevice.removeEventListener('gattserverdisconnected',onDisconnect); //function call: onDisconnect
+									btError = "L";
+									await btCharacteristic.stopNotifications();
+									btError = "M";
+      						await btCharacteristic.removeEventListener('characteristicvaluechanged',handleCountNotification);
+        		        //forget device( forget only works if "Experimental Web Platform features" is enabled in chrome://flags>
+//      						await btDevice.forget(); //forget device (so it's no longer 'Paired')
+		            //Finally, tell device to disconnect
+									btError = "N";
+									await btDevice.gatt.disconnect();
+      					}
+      				catch(error)
+      					{
+      						console.log('Error' + btError + '3: ' + error + ', code: '+error.code + ', message: ' + error.message + ' Service ' + btCharacteristic.service.uuid
+      							+', uuid '+btCharacteristic.uuid+', Notify '+btCharacteristic.properties.notify+', Read '+btCharacteristic.properties.read
+      							+', Value '+btCharacteristic.value);
+      					}
+						} //end of 'if a bluetooth device is connected'
+            //Update display>
+      			//Device is disconnected so change button1 back to 'Connect'>
+					button = document.getElementById('button1');
+      		button.innerText=button.textContent=button1PrimaryString;
+
+					document.getElementById('button2').innerText=document.getElementById('button2').textContent=	button2PrimaryString;
+					enableDisableButton("button2",disable);
+					document.getElementById('button3').innerText=document.getElementById('button3').textContent=button3PrimaryString;
+					document.getElementById('button7').style.visibility='hidden'; //show the 'Confirm Reset' button
+					if(resultLogEntries == 0)
+						{
+							enableDisableButton("button3",disable);
+						}
+					else
+						{
+							enableDisableButton("button3",enable);
+						}
+					clearInterval(periodicallyDisplayLocalTime); //stop incrementing local time
+					countingFlag=0; //stop the local timer
+					firstConnectFlag = 1; //set this flag again so that a reset is sent the next counter connected
+					displaySection1Status("Connect counter","black");
+      				enableDisableCount(disable)	//grey out count
+					blankCount(); //remove values from counter
+      	} //end of else 'if connected and therefore button1 is displaying 'Disconnect' disconnect'
+
+    } //end of function onScanButtonClick
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onScanButtonClick <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> handleCountNotification >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	function handleCountNotification(event)
+		{
+			btValue=event.target.value; //an notify has been received to say either the count and it's time and/or the battery charge has changed
+			displayCount(); //so update the count, time and battery charge
+	}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< handleCountNotification <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onStopOrResetButtonClick >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  async function onStopOrResetButtonClick()
+    {
+      var button=document.getElementById('button2');
+	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Primary Button Function >>>>>>>>>>>>>>>>>>>>>>>>>>
+		if(document.getElementById('button2').innerHTML==button2PrimaryString) //if count is in progress button2 will be showing 'Stop Count'
+    	  	{
+				try
+					{
+						if(btDevice.gatt.connected)
+								{
+									await btCharacteristic.stopNotifications();
+								}
+      				await btCharacteristic.removeEventListener('characteristicvaluechanged',handleCountNotification);
+      			}
+      		catch(error)
+      			{
+      				console.log('Error4: ' + error);
+      			}
+      		countingFlag = 0; //tells the displayCount function to stop incrementing local time
+					clearInterval(periodicallyDisplayLocalTime); //stop incrementing local time
+
+      	//>change button2 from 'End Count' to 'Reset Count'>
+      		button.innerText=button.textContent=button2SecondaryString; //button2 is still selected from if statement above
+			displaySection1Status("Count stopped. Update Site/Raingauge/etc?","black");
+			if(countValue != 0 )
+				{
+					document.getElementById('button3').innerHTML=button3SecondaryString;
+					enableDisableButton('button3',enable);
+				}
+	}
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Secondary Button Function >>>>>>>>>>>>>>>>>>>>>>>>>>
+			else //button reads "Reset Count"
+      	{
+					if(document.getElementById('button2').innerHTML==button2SecondaryString) // if button is displaying 'Reset Count'
+						{
+							if(document.getElementById('button3').innerHTML==button3SecondaryString) //if the count hasn't been kept (put in the result log table)
+								{
+									enableDisableButton("button3",disable); //disable and grey out button3 'Keep Count'. Will be reenabled if button2 'Cancel Reset' is pressed
+									displaySection1Status("Count not kept. Reset anyway?","red");
+									button.innerText=button.textContent=button2TertiaryString; //change the button text to 'Cancel Reset'
+
+									document.getElementById('button7').style.visibility='visible'; //show the 'Confirm Reset' button
+								}
+							else //if the count has been kept
+								{
+								onConfirmResetButtonClick(); //reset the count without asking for confirmation
+								}
+						}
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Tertiary Button Function >>>>>>>>>>>>>>>>>>>>>>>>>>
+					else //button must be displaying 'Cancel Reset'
+						{
+							displaySection1Status("Count stopped. Update Site/Raingauge/etc?","black");
+							button.innerText=button.textContent=button2SecondaryString; //change the button text back to 'Reset Count'
+							enableDisableButton("button3",enable); // enable button3  'Keep Count' again
+							document.getElementById('button7').style.visibility='hidden'; //hide the 'Confirm Reset' button again
+						}
+				}
+		}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onStopOrResetButtonClick <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onConfirmResetButtonClick <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	async function onConfirmResetButtonClick()
+		{
+      var button=document.getElementById('button2');
+			if(btDevice.gatt.connected) //if it's still connecteds
+      	{
+      		try
+						{
+      			//Start count notifications again>
+      				await btCharacteristic.startNotifications(); //start notifications again (when button2 saying 'Stop Count' was pressed it will have stopped notifications from the counter)
+      				btCharacteristic.addEventListener('characteristicvaluechanged',handleCountNotification);
+							let resetVal=Uint8Array.of(0,0,0,0,0,0); //device will reset tip count and its time values to 0 on receipt of this write regardless of values written
+//      				await btCharacteristic.writeValue(resetVal); //send a reset instruction to the counter which will respond with a noticifion which will update the counter display to all zeros
+							await btCharacteristic.writeValueWithResponse(resetVal); //tell the counter to reset its tip count and time the counter should respeond with a notificaiton with count=0 time=0
+							lastCountVal=1; //set this to one so that when counter resets and then sends a notification with the count reset to 0, the displaycount function will display it
+						}
+      		catch(error)
+      			{
+      				console.log('Error5: '+error+', code: '+error.code+', message: '+error.message+', name: '+error.name);
+      			}
+				}
+			else //if device is not connected>
+      	{
+					countVal = 0;
+					countTime = 0;
+					blankCount();
+      	}
+    //>change button2 back to 'Stop Count'>
+    	button.innerText=button.textContent=button2PrimaryString; //change button2 back to 'Stop Count'>
+			enableDisableButton('button2',disable);
+    //>Ensure button3 reads 'Show counts'>
+			document.getElementById('button3').innerText=document.getElementById('button3').textContent=button3PrimaryString;
+			document.getElementById('button7').style.visibility='hidden'; //rnsure the 'Confirm Reset' button is hidden again
+			if(resultLogEntries == 0)
+				{
+					enableDisableButton('button3',disable)
+				}
+		//Update the status
+			if(btDevice.gatt.connected)
+				{
+					displaySection1Status("Waiting for count. Update Site/Raingauge/etc?","black");
+				}
+			else
+				{
+					document.getElementById('button1').innerText=document.getElementById('button1').textContent=button3PrimaryString; // ensure button1 reads 'Connect Counter'
+					enableDisableButton("button1",enable);	//ensure button1 is enabled
+					displaySection1Status("Connect counter","black");
+				}
+		} //end of onConfirmResetButtonClick function
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onConfirmResetButtonClick <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onLogResultButtonClick >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	async function onLogResultButtonClick()
+		{
+      if(document.getElementById('button3').innerHTML == button3SecondaryString ) //if count is in progress
+				{
+					if(resultLogEntries == maxResultLogEntries)
+						{
+						return;
+						}
+					let resultStartPosition = resultLogString.length; //before adding the result to the resultLog string make a note of the end of the string (i.e. where it will be added)
+				//format the data to be saved into stings>
+					if(siteNameString != "") //if the site's name string is emtpy
+						{
+							siteNameString = siteNameString.replace(/,/g , csvSeparatorSub);
+						}
+					if(raingaugeDetailsString != "")
+						{
+							raingaugeDetailsString = raingaugeDetailsString.replace(/,/g , csvSeparatorSub);
+						}
+
+					if(gaugeIDString != "")
+						{
+							gaugeIDString = gaugeIDString.replace(/,/g , csvSeparatorSub);
+						}
+
+					resultLogString += siteNameString + csvSeparator;
+					resultLogString += gaugeIDString + csvSeparator;
+					resultLogString += new Date().toLocaleDateString() + csvSeparator;
+					resultLogString += new Date().toLocaleTimeString() + csvSeparator;
+					resultLogString += raingaugeDetailsString + csvSeparator;
+					resultLogString += bottleVolumeString + csvSeparator;
+					resultLogString += nozzleSizeString  + csvSeparator;
+//					console.log("1nozzleSizeString " + nozzleSizeString);
+					resultLogString += countString + csvSeparator;
+					resultLogString += countTimeString+ "\r\n";
+					 
+				//store the result log in case API is shut before saving results log to CSV file>
+//							console.log("2gaugeIDString " + gaugeIDString);
+//							console.log("2nozzleSizeString " + nozzleSizeString);
+					try
+						{
+							localStorage.setItem("ResultLogString", resultLogString);
+							localStorage.setItem("siteNameString", siteNameString);
+							localStorage.setItem("raingaugeDetailsString", raingaugeDetailsString);
+							localStorage.setItem("gaugeIDString", gaugeIDString);
+							localStorage.setItem("bottleVolumeString", bottleVolumeString);
+//							console.log("3gaugeIDString " + gaugeIDString);
+//							console.log("3nozzleSizeString " + nozzleSizeString);
+							localStorage.setItem("nozzleSizeString", nozzleSizeString);
+						}
+					catch(error) //
+						{
+							console.log('Error6: Local storage exceded.');
+						}
+				//Update results log table with last result>
+					updateResultLogTable(resultStartPosition);
+					displaySection1Status("Count kept","black");
+					document.getElementById('button3').innerHTML = button3PrimaryString;
+					enableDisableButton('button3',enable); //enable save to file button
+
+				}
+			else //button must be displaying 'Show Counts'
+				{
+					if(resultLogEntries == 1)
+						{
+						displaySection2Status("Save result to file?","black");
+						}
+					else
+						{
+						displaySection2Status("Save counts to file?","black");
+						}
+					enableDisableButton('button4',enable); //enable save to file button
+					enableDisableButton('button5',enable); //enable save to file button
+					document.getElementById('section1').style.display='none';
+					document.getElementById('section2').style.display='block';
+				}
+		}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onLogResultButtonClick <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onSaveButtonClick >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  async function onSaveButtonClick()
+  	{
+	//specify the type of file and suggested name etc to save to>
+      const opts=
+      	{
+					startIn: "downloads",
+					id: "rememberedDirectory",
+ 					types:
+						[
+      				{
+      				description: 'NewCSV',
+      				accept: {'text/plain': ['.csv']},
+      				},
+      			],
+      	};
+    //open a dialogue box to select the file to save to>
+			try
+    		{
+					const fileHandle = await window.showSaveFilePicker(opts);
+          resultLogString = csvColumnHeadingsString + resultLogString;
+					writeToFile(fileHandle,0);
+				} //end of try
+    	catch(error)
+    		{
+    			console.log('Error7: ' + error.code + ', ' + error );
+					if(error.code == 20)
+						{
+							displaySection2Status("Log not Saved! '" + btFileName + "' is open in another application","red");
+						}
+      	}
+
+			}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onSaveButtonClick <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onAddButtonClick >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  async function onAddButtonClick()
+  	{
+      		//specify the type of file and suggested name etc to save to>
+      	    const opts=
+      				{
+								startIn: "downloads",
+								id: "rememberedDirectory",
+      				};
+
+			const csvColumnHeadingsLength = csvColumnHeadingsString.length;
+			try
+    		{
+    //open a dialogue box to select the file to save to>
+    			const [fileHandle] = await window.showOpenFilePicker(opts);
+
+					const csvFile = await fileHandle.getFile();
+					const csvFileSize = await csvFile.size;
+					let tempString = await csvFile.text();
+
+					if(csvFileSize > csvColumnHeadingsLength)
+						{
+							tempString = tempString.slice(0,csvColumnHeadingsLength); //
+							if(tempString == csvColumnHeadingsString)
+								{
+									writeToFile(fileHandle,csvFileSize);
+								}
+							else
+								{
+									displaySection2Status("Log not Saved! '" + btFileName + "' is not a valid count file","red");
+								}
+						}
+					else
+						{
+							displaySection2Status("Log not Saved! '" + btFileName + "' is not a valid count file","red");
+						}
+				} //end of try
+    	catch(error)
+    		{
+    			console.log('Error8: ' + error.code + ', ' + error );
+					if(error.code == 11)
+						{
+							displaySection2Status("Log not Saved! '" + btFileName + "' is open in another application","red");
+						}
+      	}
+
+		}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onAddButtonClick <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> writeToFile >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+async function writeToFile(fileHandle,fileSize)
+	{
+  	btFileName = fileHandle.name; //remember filename for next time
+		try
+			{
+			//Use streams to write file>
+				let writableStream = await fileHandle.createWritable({keepExistingData : true});
+        		await writableStream.write({type:"write" , position: fileSize , data: resultLogString});
+      			await writableStream.close();
+			//reset the result log etc.>
+				displaySection2Status("Results saved to file '" + btFileName + "'","darkseagreen");
+				enableDisableButton('button3',disable);
+				enableDisableButton('button4',disable);
+				enableDisableButton('button5',disable);
+				enableDisableButton('button6',enable);
+				resultLogEntries = 0; //reset the number of results back to 0;
+				resultLogString = ""; //reset the result log back to no results
+				localStorage.setItem("ResultLogString",resultLogString); //reset the copy of results log stored locally
+			//clear the results displayed in the resultLog table>
+				for(let rowNumber = 0 ; rowNumber < maxResultLogEntries ; rowNumber++)
+					{
+						for(let columnNumber = 0 ; columnNumber < maxResultLogColumns ;  columnNumber++)
+							{
+								let resultLogID = "table1c" + columnNumber + "r" + rowNumber; //generate html table cell id string
+								document.getElementById(resultLogID).innerHTML = ""; //display the data for that id
+							}
+					}
+				enableDisableCount(enable); //now results have been save to file ensure new counts can start
+				} //end of try
+      catch(error)
+      	{
+      		console.log('Error9: ' + error.code + ', ' + error );
+					if(error.code == 11)
+						{
+							displaySection2Status("Log not Saved! '" + btFileName + "' is open in another application","red");
+						}
+      	}
+		}//end of writeToFile function
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< writeToFile <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> updateResultLogTable >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+function updateResultLogTable(resultStartPosition)
+	{
+		var stringLength;
+		var indexStringLength;
+		let tempResultLogString = resultLogString.slice(resultStartPosition) //make a copy of the result(s) string which will be reduced to 0 as the results are written
+
+	do
+		{
+	//add a result to the results table>
+		for(let columnNumber = 0 ; columnNumber < maxResultLogColumns;  columnNumber++) //fill each column entry with ends with a comma (last column has no comma but ends with a carriage return and a line feed
+			{
+				if(columnNumber < maxResultLogColumns -1) //each column entry ends with a comma except the last column which ends with a linefeed and carriage return
+					{
+						stringLength = tempResultLogString.indexOf(csvSeparator); //get the position of the next column separator character
+						indexStringLength = 1; //separator character is a single character
+					}
+				else
+					{
+						stringLength = tempResultLogString.indexOf("\r\n"); //the last column does not end with the separator character, it ends with carriage return and new line characters
+						indexStringLength = 2; //two characters at the end of the line
+					}
+
+				let tableDataString = tempResultLogString.slice(0,stringLength) //make a string to be put into a table column (the string is from the start position to the next comma)
+				tempResultLogString = tempResultLogString.slice(stringLength + indexStringLength) //remove that table column string from the string containing the rest of the result
+				let resultLogID = "table1c" + columnNumber + "r" + resultLogEntries //prepare html table cell id string
+				document.getElementById(resultLogID).innerHTML = tableDataString; //display the column entry
+			}
+
+		tempResultLogString = tempResultLogString.slice(resultStartPosition) //make a copy of the result(s) string which will be reduced to 0 length as the results are written
+		++resultLogEntries;
+		}
+		while(tempResultLogString != ""); //at this point tempResultLogString should either, start with the first character of the next table result, or be empty if the last result has been added to the table
+		if(resultLogEntries >= maxResultLogEntries)
+			{
+				displaySection2Status("Counts table Full! Save to file to continue","red");
+				enableDisableButton('button4',enable); //disable button
+				enableDisableButton('button5',enable); //disable button
+				enableDisableButton('button6',disable); //disable button
+				document.getElementById('section1').style.display='none'; //hide the counter display section
+				document.getElementById('section2').style.display='block'; //show the result log table section
+			}
+
+	}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< updateResultLogTable <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Display functions >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> displayCount >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  function displayCount() //display received count>
+		{
+    //get count value from received data>
+      countVal=(btValue.getUint8(1)*256)+btValue.getUint8(0); //bytes are transmitted in reverse so swap top and bottom bytes to get correct 16 bit value
+//			console.log("countVal " + countVal);
+//			console.log("lastCountVal " + lastCountVal);
+			if(countVal != lastCountVal) //has the count changed (if not only the battery status must have changed)
+				{
+					lastCountVal = countVal; //keep a record of the last count value received
+      		//Update displayed status and flags if counting has started>
+    			if(countVal != 0)
+      			{
+      				countingFlag = 1;
+							enableDisableButton("button2",enable);
+							displaySection1Status("Counting. Update Site/Raingauge/etc?","black");
+						}
+					else
+						{
+//							console.log("Count is zero");
+      				countingFlag = 0 ;
+							enableDisableButton("button2",disable);
+							displaySection1Status("Waiting for count. Update Site/Raingauge/etc?","black");
+						}
+					//turn count into a string and display it
+					countString=String(countVal).padStart(3,'0');
+      		document.getElementById("countValue").innerHTML=countString;
+		//display received time>
+      		let timeVal=(btValue.getUint8(3)*256)+btValue.getUint8(2);
+      		minutesVal=Math.floor(timeVal/60);
+      		secondsVal=Math.floor(timeVal%60);
+
+      		minutesVal = String(minutesVal).padStart(2,'0');
+      		secondsVal = String(secondsVal).padStart(2,'0');
+					countTimeString = minutesVal + ":" + secondsVal;
+      		document.getElementById("timeValue").innerHTML=countTimeString;
+
+		//display local time>
+      		if(countVal==0) //if the count has been reset
+      			{
+						//reset the local time too>
+      				localMinutes=0; 
+      				localSeconds=0;
+      				localTimeDisplay(); //display local time as 00:00
+      			}
+      		else //but if a count is in progress
+      			{
+      				if(countVal==1) //if it's the first tip
+      					{
+      						countingFlag=1; //indicate a count is in progress
+      						startTime=Math.floor(Date.now()/1000); //record the local seconds count of when the count started
+							enableDisableButton('button2',enable) //enable the 'stop count' button
+      						periodicallyDisplayLocalTime = setInterval(function() //start updating the local time display every second
+      							{
+      								localMinutes=Math.floor(((Date.now()/1000)-startTime)/60);
+      								localSeconds=Math.floor(((Date.now()/1000)-startTime)%60);
+											syncTime(); //recieved time and local time can get out of sync so once a minute send local time to the counter so the counter and synchronize with it>
+      								localTimeDisplay();
+      								if(countingFlag==0) //if the 'stop count' button has been pressed
+												{
+      										clearInterval(periodicallyDisplayLocalTime); //stop updating the local time display
+      										localTimeDisplay();
+      									}
+      							},1000);
+      						}
+      				}
+					} //end of if countVal has changed
+
+			//display battery level>
+				let batteryStatus=btValue.getUint8(4);
+						batteryString = "";
+								if(batteryStatus & BAT_STATUS_USB_MSK)
+									{
+										batteryString += "&#x1F50C"; // plugged in symbol
+									}
+								if(batteryStatus & BAT_STATUS_GOOD_MSK)
+									{
+										batteryString += "&#x1F50B"; //battery symbol
+									}
+								else
+									{
+										batteryString += "&#x1FAAB"; // low battery symbol
+									}
+								if(batteryStatus & BAT_STATUS_BAT_PRESENT_MSK)
+									{
+									if(batteryStatus & BAT_STATUS_CHARGING_MSK)
+										{
+											batteryString += "&#x026A1"; //battery charging symbol
+										}
+									}
+								else
+									{
+										batteryString += "&#x0274C"; //battery not present symbol
+									}
+//>>> UNCOMMENT TO TEST, LOG AND DEBUG BATTERY CHARGING AND DISCHARGING (adds battery % to string) >>>
+//								let batteryPercent=btValue.getUint8(5);
+//								batteryPercent=String(batteryPercent).padStart(3,' ');
+//								batteryString += " " + batteryPercent + "%"
+//<<< UNCOMMENT TO TEST, LOG AND DEBUG BATTERY CHARGING AND DISCHARGING  (adds battery % to string) <<<*/
+      					document.getElementById("batteryValue").innerHTML = "Counter    " + batteryString;
+
+      		//Update how and if count data and buttons are displayed>
+						enableDisableCount(enable)
+					}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< displayCount <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> localTimeDisplay >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	function localTimeDisplay()
+ 	 	{
+  			localMinutes=String(localMinutes).padStart(2,'0');
+    		localSeconds=String(localSeconds).padStart(2,'0');
+				localTimeString = localMinutes + ":" + localSeconds;
+      	document.getElementById("localTimeValue").innerHTML=localTimeString;
+   	}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< localTimeDisplay <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	function enableDisableButton(buttonID,enabledDisabled)
+		{
+		let colour = "blue"
+			if(buttonID == "button4" || buttonID == "button5")
+				{
+				colour = "DarkSeaGreen";
+				}
+			if(enabledDisabled) //if button is to be enabled, enable it and show its normal colours
+				{
+					document.getElementById(buttonID).disabled = false ;
+					document.getElementById(buttonID).style.backgroundColor = colour ;
+				}
+			else //else disable it and grey it out
+				{
+					document.getElementById(buttonID).disabled = true ;
+					document.getElementById(buttonID).style.backgroundColor = 'lightgrey' ;
+				}
+		}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< enableDisableButton <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onDisplayCountButtonClick >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+function onDisplayCountButtonClick()
+			{
+				document.getElementById('section1').style.display='block';
+				document.getElementById('section2').style.display='none';
+				if(resultLogEntries == 0)
+					{
+					enableDisableButton('button3',disable);
+					}
+				else
+					{
+					enableDisableButton('button3',enable);
+					}
+}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onDisplayCountButtonClick <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> displaySection1Status >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+function displaySection1Status(statusString,colour)
+	{
+	document.getElementById("sectionOneStatus").style.color = colour;
+	document.getElementById("sectionOneStatus").innerHTML = statusString;
+	}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< displaySection1Status <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> displaySection2Status >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+function displaySection2Status(statusString,colour)
+	{
+	document.getElementById("sectionTwoStatus").style.color = colour;
+	document.getElementById("sectionTwoStatus").innerHTML = statusString;
+	}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< displaySection2Status <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> enableDisableCount >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	async function enableDisableCount(enable)
+		{
+		var colour;
+			try
+				{
+					if(enable) //if counting is connected (via bluetooth)
+						{
+									colour = 'blue'; //assume enable is true
+						}
+					else //must be disable
+						{
+							if (await btDevice.gatt.connected)
+								{
+									await btCharacteristic.stopNotifications(); //end count notifications to ensure a log result attempt won't be made if resultLog is full
+      						btCharacteristic.removeEventListener('characteristicvaluechanged',handleCountNotification);
+								}
+							colour = 'lightgrey';
+						}
+				}
+			catch(error)
+				{
+					console.log('Error10:  ' + error);
+				}
+      document.getElementById("table2").style.backgroundColor = colour;
+		}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< enableDisableCount <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> blankCount >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+function blankCount()
+	{
+		document.getElementById("countValue").innerHTML="---";
+    document.getElementById("timeValue").innerHTML="--:--";
+    document.getElementById("batteryValue").innerHTML = "Counter";
+    document.getElementById("localTimeValue").innerHTML="--:--";
+	}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< blankCount <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Display functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> syncTime >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	async function syncTime() //the counter's time and the local time of the app's device can slowly get out of sync so periodically set counters time to the app devices localTime
+		{
+			let syncVal = Uint16Array.of(0,0,0); //create an array of 3 intergers, all 0
+			syncVal[1] = Math.floor(Date.now()/1000) - startTime; //put the local time (in seconds) where the received tip time data goes 
+			if(syncVal[1] != 0 && ((syncVal[1]%60) == 0) && btDevice.gatt.connected ) //don't send if not connected or number of seconds is 0 or counter will see it as a reset command and only sync as the minutes value increases (i.e. once per minute)
+				{
+					await btCharacteristic.writeValueWithResponse(resetVal); //tell the counter to reset its tip count and time the counter should respeond with a notificaiton with count=0 time=0
+					lastCountVal=1; //set this to one so that when counter resets and then sends a notification with the count reset to 0, the displaycount function will display it
+				}
+		}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< syncTime <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> counterSoftwareIsCompatible >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Used to check that the currently connected Counter has software compatible with newly added code here
+ function counterSoftwareIsCompatible(minCounterSoftwareVersion)
+ 	{
+		if(btCounterSoftwareVersion >= minCounterSoftwareVersion)
+			{
+				return 1;
+			}
+		else
+			{
+				return 0;
+			}
+	}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< counterSoftwareIsCompatible <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onDisconnect >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	function onDisconnect(event)
+	{
+//		try
+//			{
+//				await btDevice.gatt.connect(); //wait while trying to connect to device again	
+//			}
+ // 	 catch(error)
+ // 	 	{
+			//disconnected>
+//				console.log('Error11: ' + error.code );
+//				if(error.code == 19)//if this is a network error meaning bluetooth has been turned off
+//      		{
+//						console.log('Error12: Disconnected');
+						btError = "D1";
+						if(document.getElementById('sectionOneStatus').innerHTML != "Disconnected. Please ensure Bluetooth is enabled & counter is in range and powered up") //if the disconnection message has not been displayed yet
+							{
+								tempString = document.getElementById('sectionOneStatus').innerHTML; //keep a record of the current status (so it can be restored when connection is restored)0
+//								console.log("tempString " + tempString);
+								displaySection1Status("Disconnected. Please ensure Bluetooth is enabled & counter is in range and powered up","red"); //then display the disconnetion message
+							}
+						enableDisableButton('button1',disable);
+						enableDisableCount(disable); //grey out count and buttons
+						waitForBluetoothEnable=setInterval( async function()
+      					{
+									if(document.getElementById('button2').innerHTML==button2SecondaryString)
+										{
+											enableDisableButton('button2',disable);
+										}
+									try
+										{
+											btError = "D2";
+//									let btConnectionStatus = btDevice.gatt.connect(); //find out if bluetooth has reconnected
+											btServer = await btDevice.gatt.connect(); //find out if bluetooth has reconnected
+//									btError = "D3";
+//	    						btConnectionStatus.then	//if bluetooth has reconnected
+//      							(
+//											async result =>
+//      									{
+												//reconnecting>
+													clearInterval(waitForBluetoothEnable); //stop checking bluetooth connection status
+													displaySection1Status(tempString,"black");		//restore the status to what is was before disconnection
+													enableDisableButton('button1',enable); //enable button1 again
+      										enableDisableCount(enable);//display count and buttons in normal colours and enable count notifications
+													btError = "D5";
+													btService = await btServer.getPrimaryService(btServiceId); //get the primary service again
+//													btError = "D6";
+													btCharacteristic = await btService.getCharacteristic(btCharacteristicId); //and get its characteristic again
+													if(document.getElementById('button2').innerHTML == button2PrimaryString) //if count hasn't been stopped
+														{
+															btError = "D7";
+															await btCharacteristic.startNotifications(); //start count notifications again so new count value can be displayed when it's receieved
+															btError = "D8";
+															await btCharacteristic.addEventListener('characteristicvaluechanged',handleCountNotification); 
+															btError = "D9";
+															btValue = await btCharacteristic.readValue(); //read the count in case counter has updated its count while disconnected
+															displayCount(); //display the count again
+														}
+													else //but if the count was stopped while bluetooth was disconnected
+														{
+															if(document.getElementById('button2').innerHTML == button2SecondaryString) //if count has been stopped
+																{
+																	enableDisableButton('button2',enable); 
+																}
+														}
+      									enableDisableCount(enable);//display count and buttons in normal colours and enable count notifications
+//											} //end of async result =>
+//      							)
+										}
+//      						.catch //but if there is still no bluetooth connection
+//      							(
+//											error =>
+											catch(error)
+      									{
+      										console.log("Error " + btError + ": " + error + ", " + error.code); //display error information on the console
+      									}
+//      							);
+      					},1000); //end of waitForBluetoothEnable=setInterval( function()
+
+//      		} //end of if, btDevice.gatt.connect() above, returns anything other than a network error output the error information to the console as usual
+//				else
+//					{
+//						console.log('Error: '  + error.code + ', message: ' + error.message + ' Service ' + btCharacteristic.service.uuid
+//							+ ', uuid ' +btCharacteristic.uuid + ', Notify ' + btCharacteristic.properties.notify + ', Read ' + btCharacteristic.properties.read
+//							+ ', Value ' + btCharacteristic.value);
+//			}
+//		} //end of catch
+//		console.log("btDevice " + btDevice.gatt.connected + " , " + btDevice.gatt.device);
+
+	}// end of function onDisconnect
+      //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onDisconnect <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+      //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< JavaScript <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    </script>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> HTML >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+
+</body>
+<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< HTML <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+</html>
