@@ -467,7 +467,7 @@
 		</div>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Status Line 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Software version number >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
-		<span class="spanStyle3">V</span><span id="versionNumber" class="spanStyle3">0.16</span>
+		<span class="spanStyle3">V</span><span id="versionNumber" class="spanStyle3">0.17</span>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Software version number <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
 </div>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< End of Section1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	-->
@@ -1546,19 +1546,19 @@ function blankCount()
 													clearInterval(waitForBluetoothEnable); //stop checking bluetooth connection status
 													displaySection1Status(tempString,"black");		//restore the status to what is was before disconnection
 													enableDisableButton('button1',enable); //enable button1 again
-      												enableDisableCount(enable);//display count and buttons in normal colours and enable count notifications
+      										enableDisableCount(enable);//display count and buttons in normal colours and enable count notifications
 													btError = "D5";
 													btService = await btServer.getPrimaryService(btServiceId); //get the primary service again
-//													btError = "D6";
+													btError = "D6";
 													btCharacteristic = await btService.getCharacteristic(btCharacteristicId); //and get its characteristic again
 													if(document.getElementById('button2').innerHTML == button2PrimaryString) //if count hasn't been stopped
 														{
+															btError = "D9";
+															btValue = await btCharacteristic.readValue(); //read the count in case counter has updated its count while disconnected
 															btError = "D7";
 															await btCharacteristic.startNotifications(); //start count notifications again so new count value can be displayed when it's receieved
 															btError = "D8";
 															await btCharacteristic.addEventListener('characteristicvaluechanged',handleCountNotification); 
-															btError = "D9";
-															btValue = await btCharacteristic.readValue(); //read the count in case counter has updated its count while disconnected
 															displayCount(); //display the count again
 														}
 													else //but if the count was stopped while bluetooth was disconnected
