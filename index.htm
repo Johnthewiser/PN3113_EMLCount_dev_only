@@ -1546,7 +1546,7 @@ function blankCount()
 													clearInterval(waitForBluetoothEnable); //stop checking bluetooth connection status
 													displaySection1Status(tempString,"black");		//restore the status to what is was before disconnection
 													enableDisableButton('button1',enable); //enable button1 again
-      										enableDisableCount(enable);//display count and buttons in normal colours and enable count notifications
+      												enableDisableCount(enable);//display count and buttons in normal colours and enable count notifications
 													btError = "D5";
 													btService = await btServer.getPrimaryService(btServiceId); //get the primary service again
 //													btError = "D6";
