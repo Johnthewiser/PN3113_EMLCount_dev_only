@@ -1506,22 +1506,11 @@ function blankCount()
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onDisconnect >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	function onDisconnect(event)
 	{
-//		try
-//			{
-//				await btDevice.gatt.connect(); //wait while trying to connect to device again	
-//			}
- // 	 catch(error)
- // 	 	{
-			//disconnected>
-//				console.log('Error11: ' + error.code );
-//				if(error.code == 19)//if this is a network error meaning bluetooth has been turned off
-//      		{
-//						console.log('Error12: Disconnected');
+
 						btError = "D1";
 						if(document.getElementById('sectionOneStatus').innerHTML != "Disconnected. Please ensure Bluetooth is enabled & counter is in range and powered up") //if the disconnection message has not been displayed yet
 							{
 								tempString = document.getElementById('sectionOneStatus').innerHTML; //keep a record of the current status (so it can be restored when connection is restored)0
-//								console.log("tempString " + tempString);
 								displaySection1Status("Disconnected. Please ensure Bluetooth is enabled & counter is in range and powered up","red"); //then display the disconnetion message
 							}
 						enableDisableButton('button1',disable);
@@ -1535,66 +1524,43 @@ function blankCount()
 									try
 										{
 											btError = "D2";
-//									let btConnectionStatus = btDevice.gatt.connect(); //find out if bluetooth has reconnected
 											btServer = await btDevice.gatt.connect(); //find out if bluetooth has reconnected
-//									btError = "D3";
-//	    						btConnectionStatus.then	//if bluetooth has reconnected
-//      							(
-//											async result =>
-//      									{
-												//reconnecting>
-													clearInterval(waitForBluetoothEnable); //stop checking bluetooth connection status
-													displaySection1Status(tempString,"black");		//restore the status to what is was before disconnection
-													enableDisableButton('button1',enable); //enable button1 again
-      										enableDisableCount(enable);//display count and buttons in normal colours and enable count notifications
-													btError = "D5";
-													btService = await btServer.getPrimaryService(btServiceId); //get the primary service again
-													btError = "D6";
-													btCharacteristic = await btService.getCharacteristic(btCharacteristicId); //and get its characteristic again
-													if(document.getElementById('button2').innerHTML == button2PrimaryString) //if count hasn't been stopped
+										//reconnecting>
+											clearInterval(waitForBluetoothEnable); //stop checking bluetooth connection status
+											displaySection1Status(tempString,"black");		//restore the status to what is was before disconnection
+											enableDisableButton('button1',enable); //enable button1 again
+											enableDisableCount(enable);//display count and buttons in normal colours and enable count notifications
+											btError = "D5";
+											btService = await btServer.getPrimaryService(btServiceId); //get the primary service again
+											btError = "D6";
+											btCharacteristic = await btService.getCharacteristic(btCharacteristicId); //and get its characteristic again
+											if(document.getElementById('button2').innerHTML == button2PrimaryString) //if count hasn't been stopped
+												{
+													btError = "D7";
+													await btCharacteristic.startNotifications(); //start count notifications again so new count value can be displayed when it's receieved
+													btError = "D8";
+													await btCharacteristic.addEventListener('characteristicvaluechanged',handleCountNotification); 
+													displayCount(); //display the count again
+													btError = "D9";
+													btValue = await btCharacteristic.readValue(); //read the count in case counter has updated its count while disconnected
+												}
+											else //but if the count was stopped while bluetooth was disconnected
+												{
+													if(document.getElementById('button2').innerHTML == button2SecondaryString) //if count has been stopped
 														{
-															btError = "D9";
-															btValue = await btCharacteristic.readValue(); //read the count in case counter has updated its count while disconnected
-															btError = "D7";
-															await btCharacteristic.startNotifications(); //start count notifications again so new count value can be displayed when it's receieved
-															btError = "D8";
-															await btCharacteristic.addEventListener('characteristicvaluechanged',handleCountNotification); 
-															displayCount(); //display the count again
+															enableDisableButton('button2',enable); 
 														}
-													else //but if the count was stopped while bluetooth was disconnected
-														{
-															if(document.getElementById('button2').innerHTML == button2SecondaryString) //if count has been stopped
-																{
-																	enableDisableButton('button2',enable); 
-																}
-														}
-      									enableDisableCount(enable);//display count and buttons in normal colours and enable count notifications
-//											} //end of async result =>
-//      							)
+												}
+      								enableDisableCount(enable);//display count and buttons in normal colours and enable count notifications
 										}
-//      						.catch //but if there is still no bluetooth connection
-//      							(
-//											error =>
-											catch(error)
-      									{
-      										console.log("Error " + btError + ": " + error + ", " + error.code); //display error information on the console
-      									}
-//      							);
-      					},1000); //end of waitForBluetoothEnable=setInterval( function()
-
-//      		} //end of if, btDevice.gatt.connect() above, returns anything other than a network error output the error information to the console as usual
-//				else
-//					{
-//						console.log('Error: '  + error.code + ', message: ' + error.message + ' Service ' + btCharacteristic.service.uuid
-//							+ ', uuid ' +btCharacteristic.uuid + ', Notify ' + btCharacteristic.properties.notify + ', Read ' + btCharacteristic.properties.read
-//							+ ', Value ' + btCharacteristic.value);
-//			}
-//		} //end of catch
-//		console.log("btDevice " + btDevice.gatt.connected + " , " + btDevice.gatt.device);
-
+									catch(error)
+										{
+											console.log("Error " + btError + ": " + error + ", " + error.code); //display error information on the console
+										}
+      						},1000); //end of waitForBluetoothEnable=setInterval( function()
 	}// end of function onDisconnect
-      //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onDisconnect <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-      //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< JavaScript <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onDisconnect <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< JavaScript <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     </script>
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> HTML >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  -->
 
