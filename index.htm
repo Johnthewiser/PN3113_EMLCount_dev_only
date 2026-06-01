@@ -39,8 +39,8 @@
 <!-- <base href="/" /> -->
 
   <!-- This meta viewport ensures the webpage's dimensions change according to the device it's on. This is called Responsive Web Design. -->
-<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-<!--  <meta name="viewport" content="viewport-fit=cover, width=420, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" /> -->
+<!-- <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" /> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
   <meta name="description" content="This is an EML PWA for its Bluetooth Counter" />
 
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181818" />
@@ -93,11 +93,12 @@
         }
 
 	body
-			{
+		{
+/*			justify-content: center; */
 			max-width: 400px;
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
+			text-align: center;
+			font-family: Arial, sans-serif;
+		}
 
   p
     {
@@ -347,15 +348,13 @@
     <script type="module" src="/src/main.tsx"></script>
 <<< For react+iconic <<< -->
 
-<!-- >> >>>For pwabuilder >>>
-    if ('serviceWorker' in navigator) {
+<!-- >> >>>For pwabuilder >>> 
+  if ('serviceWorker' in navigator) 
+		{
       window.onload = () => {
-        navigator.serviceWorker.register(
-          '/sw.js'
-        );
-      }
+      navigator.serviceWorker.register('/sw.js');
     }
-
+  
   <!-- Our app-indsiteNameex web component. This component is defined in src/pages/app-index.ts-->
   <!-- <app-index></app-index> -->
 	<!-- <<<For pwabuilder <<< -->
@@ -467,7 +466,7 @@
 		</div>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Status Line 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Software version number >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
-		<span class="spanStyle3">V</span><span id="versionNumber" class="spanStyle3">0.17</span>
+		<span class="spanStyle3">V</span><span id="versionNumber" class="spanStyle3">0.18</span>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Software version number <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
 </div>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< End of Section1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	-->
@@ -610,16 +609,10 @@ Past Counts
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< HTML <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	 -->
     <script>
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> JavaScript >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-/*>>> >>>For pwabuilder >>>
-    if ('serviceWorker' in navigator) {
-      window.onload = () => {
-        navigator.serviceWorker.register(
-          '/sw.js'
-        );
+    if ('serviceWorker' in navigator) 
+			{
+        navigator.serviceWorker.register('/sw.js');
       }
-    }
-//<<<For pwabuilder <<<*/
-
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> GLOBAL VARIABLES >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
       let btDevice = null;
