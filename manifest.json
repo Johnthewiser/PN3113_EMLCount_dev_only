@@ -30,6 +30,11 @@
       "type": "image/png"
     },
     {
+      "src": "EMLicon180x180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
       "src": "EMLicon48x48.png",
       "sizes": "48x48",
       "type": "image/png"
