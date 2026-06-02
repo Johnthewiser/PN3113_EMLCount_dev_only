@@ -42,10 +42,12 @@
 <!-- <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" /> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
   <meta name="description" content="This is an EML PWA for its Bluetooth Counter" />
-
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181818" />
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f3f3" />
-  <!-- >>> These meta tags are Apple-specific, and set the web application to run in full-screen mode with a black status bar. Learn more at https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html >>>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+ <!-- >>> These meta tags are Apple-specific, and set the web application to run in full-screen mode with a black status bar. Learn more at https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html >>>
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="PWA Starter" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -58,6 +60,7 @@
 <!-- >>> Imports an icon to represent the document. >>> -->
 <link rel="icon" href="EMLicon192x192.png" type="image/png" />
 <link rel="apple-touch-icon" href="EMLicon180x180. png"/>
+<link rel="apple-touch-icon" href="EMLicon152x152. png"/>
 	<!-- <<< Imports an icon to represent the document. <<<-->
   
 	<!-- Imports the manifest to represent the web application. A web app must have a manifest to be a PWA. -->
@@ -467,7 +470,7 @@
 		</div>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Status Line 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Software version number >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
-		<span class="spanStyle3">V</span><span id="versionNumber" class="spanStyle3">0.17</span>
+		<span class="spanStyle3">V</span><span id="versionNumber" class="spanStyle3">0.18</span>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Software version number <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
 </div>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< End of Section1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	-->

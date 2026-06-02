@@ -3,7 +3,8 @@ const staticAssets = [
  'index.htm',
  'EMLicon512x512.png', // Include your icons for offline access
  'EMLicon192x192.png',
- 'EMLicon180x180.png' 
+ 'EMLicon180x180.png', 
+ 'EMLicon152x152.png' 
 									];
 self.addEventListener('install', async () => 
 	{
