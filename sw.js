@@ -1,8 +1,9 @@
 const cacheName = 'EMLCount';
 const staticAssets = [
  'index.htm',
- 'EMLicon192x192.png', // Include your icons for offline access
- 'EMLicon512x512.png'
+ 'EMLicon512x512.png', // Include your icons for offline access
+ 'EMLicon192x192.png',
+ 'EMLicon180x180.png' 
 									];
 self.addEventListener('install', async () => 
 	{
