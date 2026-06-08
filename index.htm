@@ -460,7 +460,7 @@
 		<button id="button1" type="button" class="buttonBlue" onclick="onScanButtonClick()">Connect Counter</button>
     	<button id="button2" type="button" class="buttonLightgrey" disabled="" onclick="onStopOrResetButtonClick()">Stop Count</button>
 <!--		<button id="button3" type="button" class="buttonLightgrey" disabled="" onclick="onLogResultButtonClick()">Show Counts</button> -->
-		<button id="button3" type="button" class="buttonLightgrey" disabled="" onclick="onSaveButtonClick()">Save Counts</button>>
+		<button id="button3" type="button" class="buttonLightgrey" disabled="" onclick="onSaveButtonClick()"Save Counts</button>>
 		<br>
 		<button id="button7" type="button" class="buttonRed" onclick="onConfirmResetButtonClick()">Confirm Reset</button>
 	</div>
@@ -712,6 +712,9 @@ Past Counts
 //      				console.log('Bluetooth not supported on this device');
 //      			}
 //Start by checking for previous results which have not been saved to file>
+//>>> FOR DEBUG ONLY testing opensavefilepicker on Ipad >>>
+enableDisableButton("button3",enable);
+//<<< FOR DEBUG ONLY testing opensavefilepicker on Ipad <<<
 	if(localStorage.getItem("ResultLogString") != null) //if a copy of the resultLog has been stored locally
 		{
 			resultLogString = localStorage.getItem("ResultLogString");//the resultIndex will have been stored at the same time so restore that too
