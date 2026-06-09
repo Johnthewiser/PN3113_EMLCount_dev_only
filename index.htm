@@ -643,7 +643,7 @@ Past Counts
       let firstConnectFlag=1; //Tells the connect routine to reset the counter if this is the first time connecting since starting the app. Needed because local timer wont be running even if counter still has a count in it
 
       //var displayLocalTime;
-      let btFileName = 'EML counter log'; //default save file name
+      let btFileNameString = 'EMLCount.csv'; //default save file name
 
 			let resultLogEntries = 0 ;
 
@@ -1134,13 +1134,16 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 				} //end of try
     	catch(error)
     		{
+//>>> code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple >>>
+    					console.log('Error: ' + error.name + ', ' + error.code + ', ' + error );
+
 					if (error.name !== 'AbortError') 
 						{
 							const blob = new Blob([resultLogString], { type: 'text/plain' });
       				const url = URL.createObjectURL(blob);
       				const a = document.createElement('a');
       				a.href = url;
-      				a.download = btFileName;
+      				a.download = btFileNameString;
       				document.body.appendChild(a);
       				a.click();
       				document.body.removeChild(a);
@@ -1148,12 +1151,15 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 						}
 					else
 						{
+//<<< code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple <<<
     					console.log('Error7: ' + error.code + ', ' + error );
 							if(error.code == 20)
 								{
-									displaySection2Status("Log not Saved! '" + btFileName + "' is open in another application","red");
+									displaySection2Status("Log not Saved! '" + btFileNameString + "' is open in another application","red");
 								}
+//>>> code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple >>>
       			}
+//<<< code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple <<<
 				}
 
 			}
@@ -1187,21 +1193,42 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 								}
 							else
 								{
-									displaySection2Status("Log not Saved! '" + btFileName + "' is not a valid count file","red");
+									displaySection2Status("Log not Saved! '" + btFileNameString + "' is not a valid count file","red");
 								}
 						}
 					else
 						{
-							displaySection2Status("Log not Saved! '" + btFileName + "' is not a valid count file","red");
+							displaySection2Status("Log not Saved! '" + btFileNameString + "' is not a valid count file","red");
 						}
 				} //end of try
     	catch(error)
     		{
+//>>> code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple >>>
+    					console.log('Error: ' + error.name + ', ' + error.code + ', ' + error );
+
+					if (error.name !== 'AbortError') 
+						{
+							const blob = new Blob([resultLogString], { type: 'text/plain' });
+      				const url = URL.createObjectURL(blob);
+      				const a = document.createElement('a');
+      				a.href = url;
+      				a.download = btFileNameString;
+      				document.body.appendChild(a);
+      				a.click();
+      				document.body.removeChild(a);
+      				URL.revokeObjectURL(url);
+						}
+					else
+						{
+//<<< code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple <<<
     			console.log('Error8: ' + error.code + ', ' + error );
 					if(error.code == 11)
 						{
-							displaySection2Status("Log not Saved! '" + btFileName + "' is open in another application","red");
+							displaySection2Status("Log not Saved! '" + btFileNameString + "' is open in another application","red");
 						}
+//>>> code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple >>>
+      			}
+//<<< code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple <<<
       	}
 
 		}
@@ -1209,7 +1236,7 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> writeToFile >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 async function writeToFile(fileHandle,fileSize)
 	{
-  	btFileName = fileHandle.name; //remember filename for next time
+  	btFileNameString = fileHandle.name; //remember filename for next time
 		try
 			{
 			//Use streams to write file>
@@ -1217,7 +1244,7 @@ async function writeToFile(fileHandle,fileSize)
         		await writableStream.write({type:"write" , position: fileSize , data: resultLogString});
       			await writableStream.close();
 			//reset the result log etc.>
-				displaySection2Status("Results saved to file '" + btFileName + "'","darkseagreen");
+				displaySection2Status("Results saved to file '" + btFileNameString + "'","darkseagreen");
 				enableDisableButton('button3',disable);
 				enableDisableButton('button4',disable);
 				enableDisableButton('button5',disable);
@@ -1241,7 +1268,7 @@ async function writeToFile(fileHandle,fileSize)
       		console.log('Error9: ' + error.code + ', ' + error );
 					if(error.code == 11)
 						{
-							displaySection2Status("Log not Saved! '" + btFileName + "' is open in another application","red");
+							displaySection2Status("Log not Saved! '" + btFileNameString + "' is open in another application","red");
 						}
       	}
 		}//end of writeToFile function
