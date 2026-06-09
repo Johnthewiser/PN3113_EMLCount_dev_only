@@ -458,9 +458,9 @@
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> First set of Buttons >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
 	<div>
 		<button id="button1" type="button" class="buttonBlue" onclick="onScanButtonClick()">Connect Counter</button>
-    	<button id="button2" type="button" class="buttonLightgrey" disabled="" onclick="onStopOrResetButtonClick()">Stop Count</button>
-<!--		<button id="button3" type="button" class="buttonLightgrey" disabled="" onclick="onLogResultButtonClick()">Show Counts</button> -->
-		<button id="button3" type="button" class="buttonLightgrey" disabled="" onclick="onSaveButtonClick()"Save Counts</button>>
+    <button id="button2" type="button" class="buttonLightgrey" disabled="" onclick="onStopOrResetButtonClick()">Stop Count</button>
+		<button id="button3" type="button" class="buttonLightgrey" disabled="" onclick="onLogResultButtonClick()">Show Counts</button>
+<!--		<button id="button3" type="button" class="buttonLightgrey" disabled="" onclick="onSaveButtonClick()">Save Counts</button>> -->
 		<br>
 		<button id="button7" type="button" class="buttonRed" onclick="onConfirmResetButtonClick()">Confirm Reset</button>
 	</div>
@@ -1128,18 +1128,33 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
     //open a dialogue box to select the file to save to>
 			try
     		{
-					const fileHandle = await window.showSaveFilePicker(opts);
           resultLogString = csvColumnHeadingsString + resultLogString;
+					const fileHandle = await window.showSaveFilePicker(opts);
 					writeToFile(fileHandle,0);
 				} //end of try
     	catch(error)
     		{
-    			console.log('Error7: ' + error.code + ', ' + error );
-					if(error.code == 20)
+					if (err.name !== 'AbortError') 
 						{
-							displaySection2Status("Log not Saved! '" + btFileName + "' is open in another application","red");
+							const blob = new Blob([resultLogString], { type: 'text/plain' });
+      				const url = URL.createObjectURL(blob);
+      				const a = document.createElement('a');
+      				a.href = url;
+      				a.download = btFileName;
+      				document.body.appendChild(a);
+      				a.click();
+      				document.body.removeChild(a);
+      				URL.revokeObjectURL(url);
 						}
-      	}
+					else
+						{
+    					console.log('Error7: ' + error.code + ', ' + error );
+							if(error.code == 20)
+								{
+									displaySection2Status("Log not Saved! '" + btFileName + "' is open in another application","red");
+								}
+      			}
+				}
 
 			}
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onSaveButtonClick <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
