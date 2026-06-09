@@ -1129,15 +1129,17 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 			try
     		{
           resultLogString = csvColumnHeadingsString + resultLogString;
+					btError = "noFP";
 					const fileHandle = await window.showSaveFilePicker(opts);
+					btError = "FP";
 					writeToFile(fileHandle,0);
 				} //end of try
     	catch(error)
     		{
 //>>> code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple >>>
-    			console.log('Error: ' + error.name + ', ' + error.code + ', ' + error );
+    			console.log('Error ' + btError + ": " + error.name + ', ' + error.code + ', ' + error );
 //					if (error.name !== 'AbortError') 
-					if(window.showSaveFilePicker(opts) == undefined)
+					if(btError == "noFP")
 						{
 							console.log("Using alternative file save");
 							const blob = new Blob([resultLogString], { type: 'text/plain' });
