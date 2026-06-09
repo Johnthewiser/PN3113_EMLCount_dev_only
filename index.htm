@@ -1134,7 +1134,7 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 				} //end of try
     	catch(error)
     		{
-					if (err.name !== 'AbortError') 
+					if (error.name !== 'AbortError') 
 						{
 							const blob = new Blob([resultLogString], { type: 'text/plain' });
       				const url = URL.createObjectURL(blob);
