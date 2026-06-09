@@ -1141,25 +1141,41 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 //					if (error.name !== 'AbortError') 
 					if(btError == "noFP")
 						{
-							console.log("Using alternative file save");
-							const blob = new Blob([resultLogString], { type: 'text/plain' });
-							console.log("Blob");
-      				const url = URL.createObjectURL(blob);
-							console.log("url");
-      				const a = document.createElement('a');
-							console.log("a");
-      				a.href = url;
-							console.log("href");
-      				a.download = btFileNameString;
-							console.log("download");
-      				document.body.appendChild(a);
-							console.log("append");
-      				a.click();
-							console.log("click");
-      				document.body.removeChild(a);
-							console.log("remove");
-      				URL.revokeObjectURL(url);
-							console.log("revoke");
+							try
+								{
+									console.log("Using alternative file save");
+									btError = "Blob";
+									console.log("Blob");
+									const blob = await new Blob([resultLogString], { type: 'text/plain' });
+									btError = "url";
+									console.log("url");
+      						const url = await URL.createObjectURL(blob);
+									btError = "a";
+									console.log("a");
+      						const a = await document.createElement('a');
+									btError = "href";
+									console.log("href");
+									a.href = await url;
+									btError = "download";
+									console.log("download");
+									a.download = btFileNameString;
+									btError = "append";
+									console.log("append");
+									await document.body.appendChild(a);
+									btError = "click";
+									console.log("click");
+									await a.click();
+									btError = "remove";
+									console.log("remove");
+									await document.body.removeChild(a);
+									btError = "revoke";
+									console.log("revoke");
+									await URL.revokeObjectURL(url);
+								}
+							catch(error)
+								{
+								console.log('Error ' + btError + ": " + error.name + ', ' + error.code + ', ' + error );
+								}
 						}
 					else
 						{
