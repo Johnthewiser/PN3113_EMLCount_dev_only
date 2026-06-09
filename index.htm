@@ -1143,14 +1143,23 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 						{
 							console.log("Using alternative file save");
 							const blob = new Blob([resultLogString], { type: 'text/plain' });
+							console.log("Blob");
       				const url = URL.createObjectURL(blob);
+							console.log("url");
       				const a = document.createElement('a');
+							console.log("a");
       				a.href = url;
+							console.log("href");
       				a.download = btFileNameString;
+							console.log("download");
       				document.body.appendChild(a);
+							console.log("append");
       				a.click();
+							console.log("click");
       				document.body.removeChild(a);
+							console.log("remove");
       				URL.revokeObjectURL(url);
+							console.log("revoke");
 						}
 					else
 						{
