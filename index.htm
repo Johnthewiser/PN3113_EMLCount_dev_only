@@ -1139,6 +1139,7 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 //					if (error.name !== 'AbortError') 
 					if(window.showSaveFilePicker(opts) == undefined)
 						{
+							console.log("Using alternative file save");
 							const blob = new Blob([resultLogString], { type: 'text/plain' });
       				const url = URL.createObjectURL(blob);
       				const a = document.createElement('a');
