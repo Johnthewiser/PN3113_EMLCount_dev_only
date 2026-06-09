@@ -1135,9 +1135,9 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
     	catch(error)
     		{
 //>>> code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple >>>
-    					console.log('Error: ' + error.name + ', ' + error.code + ', ' + error );
-
-					if (error.name !== 'AbortError') 
+    			console.log('Error: ' + error.name + ', ' + error.code + ', ' + error );
+//					if (error.name !== 'AbortError') 
+					if(window.showSaveFilePicker(opts) == undefined)
 						{
 							const blob = new Blob([resultLogString], { type: 'text/plain' });
       				const url = URL.createObjectURL(blob);
@@ -1152,7 +1152,7 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 					else
 						{
 //<<< code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple <<<
-    					console.log('Error7: ' + error.code + ', ' + error );
+    			console.log('Error7: ' + error.name + ', ' + error.code + ', ' + error );
 							if(error.code == 20)
 								{
 									displaySection2Status("Log not Saved! '" + btFileNameString + "' is open in another application","red");
