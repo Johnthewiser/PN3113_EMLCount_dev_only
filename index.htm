@@ -1113,6 +1113,7 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onSaveButtonClick >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   async function onSaveButtonClick()
   	{
+/*		
 	//specify the type of file and suggested name etc to save to>
       const opts=
       	{
@@ -1142,42 +1143,28 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 //					if (error.name !== 'AbortError') 
 					if(btError == "noFP")
 						{
-							try
-								{
+*/						
 									console.log("Using alternative file save");
-									btError = "Blob";
-									console.log("Blob");
-									const blob = await new Blob([resultLogString], { type: 'text/plain' });
-									btError = "url";
-									console.log("url");
-      						const url = await URL.createObjectURL(blob);
-									btError = "a";
-									console.log("a");
-      						const a = await document.createElement('a');
-									btError = "href";
-									console.log("href");
-									a.href = await url;
-									btError = "download";
-									console.log("download");
+									resultLogString = csvColumnHeadingsString + resultLogString;
+									const fileBlob = new Blob([resultLogString], { type: 'text/csv' });
+									let tempString = await fileBlob.text();
+									console.log("fielBlob " + tempString + ", " + fileBlob.size + ", " + fileBlob.type);
+      						const url = URL.createObjectURL(fileBlob);
+									console.log("url " + url);
+      						const a = document.createElement('a');
+									console.log("a " + a);
+									a.href = url;
+									console.log("a.href " + a.href);
 									a.download = btFileNameString;
-									btError = "append";
-									console.log("append");
-									await document.body.appendChild(a);
-									btError = "click";
+									console.log("a.download " + a.download);
+									document.body.appendChild(a);
 									console.log("click");
-									await a.click();
-									btError = "remove";
+									a.click();
 									console.log("remove");
-									await document.body.removeChild(a);
-									btError = "revoke";
+									document.body.removeChild(a);
 									console.log("revoke");
-									await URL.revokeObjectURL(url);
-								}
-							catch(error)
-								{
-								console.log('Error ' + btError + ": " + error.name + ', ' + error.code + ', ' + error );
-								}
-						}
+									URL.revokeObjectURL(url);
+/*						}
 					else
 						{
 //<<< code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple <<<
@@ -1190,7 +1177,7 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
       			}
 //<<< code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple <<<
 				}
-
+*/
 			}
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onSaveButtonClick <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onAddButtonClick >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
