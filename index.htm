@@ -45,7 +45,8 @@
   <meta name="description" content="This is an EML PWA for its Bluetooth Counter" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181818" />
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f3f3" />
-	<meta name="apple-mobile-web-app-capable" content="yes">
+<!--	<meta name="apple-mobile-web-app-capable" content="yes">  depricated. Replaced by... -->
+	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
  <!-- >>> These meta tags are Apple-specific, and set the web application to run in full-screen mode with a black status bar. Learn more at https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html >>>
@@ -1155,7 +1156,8 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 									console.log("a " + a);
 									a.href = url;
 									console.log("a.href " + a.href);
-									a.download = btFileNameString;
+//									a.download = btFileNameString;
+									a.download;
 									console.log("a.download " + a.download);
 									document.body.appendChild(a);
 									console.log("click");
@@ -1164,7 +1166,8 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 									document.body.removeChild(a);
 									console.log("revoke");
 									URL.revokeObjectURL(url);
-/*						}
+/*									
+						}
 					else
 						{
 //<<< code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple <<<
