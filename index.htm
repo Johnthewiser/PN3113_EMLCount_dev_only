@@ -604,6 +604,7 @@ Past Counts
 			<button id="button4" type="button" class="buttonDarkseagreen" onclick="onAddButtonClick()">Add counts to file</button>
 			<button id="button5" type="button" class="buttonDarkseagreen" onclick="onSaveButtonClick()">Save counts to new file</button>
 			<button id="button6" type="button" class="buttonBlue" onclick="onDisplayCountButtonClick()">Back to Counter</button>
+			<button id="button7" type="button" class="buttonBlue" onclick="onDisplayCountButtonClick()">Download</button>
 		</div>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Second set of Buttons <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Status Line 2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
@@ -645,7 +646,7 @@ Past Counts
       let firstConnectFlag=1; //Tells the connect routine to reset the counter if this is the first time connecting since starting the app. Needed because local timer wont be running even if counter still has a count in it
 
       //var displayLocalTime;
-      let btFileNameString = 'emlcount'; //default save file name
+      let btFileNameString = 'emlcount.csv'; //default save file name
 
 			let resultLogEntries = 0 ;
 
@@ -1144,8 +1145,39 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 //					if (error.name !== 'AbortError') 
 					if(btError == "noFP")
 						{
-*/						
-									console.log("Using alternative file save");
+*/	
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Method 4 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+									console.log("Using alternative file save 4");
+									resultLogString = csvColumnHeadingsString + resultLogString;
+//function download(btFileNameString, resultLogString) {
+									var element = document.createElement('a');
+									element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(resultLogString));
+									element.setAttribute('download', btFileNameString);
+
+									element.style.display = 'none';
+									document.body.appendChild(element);
+
+									element.click();
+
+									document.body.removeChild(element);
+//}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Method 4 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+/*
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Method 3 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//no errors on console but does not save file>
+									console.log("Using alternative file save 3");
+									resultLogString = csvColumnHeadingsString + resultLogString;
+									var myFile = new Blob([resultLogString], {type: 'text/plain'});
+
+									window.URL = window.URL || window.webkitURL;
+									var dlBtn = document.getElementById("button7");
+
+									dlBtn.setAttribute("href", window.URL.createObjectURL(myFile));
+									dlBtn.setAttribute("download", btFileNameString);					
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Method 3 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Method 2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//no errors on console but does not save file>
+									console.log("Using alternative file save 2");
 									resultLogString = csvColumnHeadingsString + resultLogString;
 									const fileBlob = new Blob([resultLogString], { type: 'text/csv' });
 									let tempString = await fileBlob.text();
@@ -1154,7 +1186,7 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 									console.log("url " + url);
       						const a = document.createElement('a');
 									console.log("a " + a);
-									a.href = url download;
+									a.href = url;
 									console.log("a.href " + a.href);
 									a.download = btFileNameString;
 //									a.download;
@@ -1166,7 +1198,7 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 									document.body.removeChild(a);
 									console.log("revoke");
 									URL.revokeObjectURL(url);
-/*									
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Method 3 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 						}
 					else
 						{
