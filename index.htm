@@ -1147,30 +1147,29 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 //					if (error.name !== 'AbortError') 
 					if(btError == "noFP")
 						{
-*/	
-					resultLogString = csvColumnHeadingsString + resultLogString;
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Method 5 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //https://stackoverflow.com/questions/79741864/write-to-large-file-without-loading-the-whole-file-into-ram>
 // get root directory
-					console.log("Using alternative file save 5");
+			resultLogString = csvColumnHeadingsString + resultLogString;
+			console.log("Using alternative file save 5");
 			const opfsRoot = await navigator.storage.getDirectory();
 			let fileHandle;
 			try 
 				{
 				// get file handle>
     			fileHandle = await opfsRoot.getFileHandle(btFileNameString);
-					console.log("1 Accessed " + btFileNameString + fileHandle.name);
+					console.log("1 Accessed " + btFileNameString + ", " + fileHandle.name);
 
 				}
 			catch (e) 
 				{
 				// create file if we failed to access it>
-				console.log("2 Failed to access " + btFileNameString + fileHandle.name);
+				console.log("2 Failed to access " + btFileNameString +  ", " + fileHandle.name);
 					fileHandle = await opfsRoot.getFileHandle(btFileNameString, {create: true});
 				}
 
 // write to the file at arbitrary points>
-				console.log("3 createwritable " + btFileNameString + fileHandle.name);
+				console.log("3 createwritable " + btFileNameString + ", " + fileHandle.name);
 			try
 				{
 					btError = "M5 A";
@@ -1234,11 +1233,13 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 									dlBtn.setAttribute("href", window.URL.createObjectURL(myFile));
 									dlBtn.setAttribute("download", btFileNameString);					
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Method 3 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/	
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Method 2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //no errors on console but does not save file>
 									console.log("Using alternative file save 2");
 									resultLogString = csvColumnHeadingsString + resultLogString;
-									const fileBlob = new Blob([resultLogString], { type: 'text/csv' });
+//									const fileBlob = new Blob([resultLogString], { type: 'text/csv' });
+									const fileBlob = new File([resultLogString], { type: 'text/csv' });
 									let tempString = await fileBlob.text();
 									console.log("fielBlob " + tempString + ", " + fileBlob.size + ", " + fileBlob.type);
       						const url = URL.createObjectURL(fileBlob);
@@ -1257,7 +1258,8 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 									document.body.removeChild(a);
 									console.log("revoke");
 									URL.revokeObjectURL(url);
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Method 3 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Method 2 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+/*
 						}
 					else
 						{
