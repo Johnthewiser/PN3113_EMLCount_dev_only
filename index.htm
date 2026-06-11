@@ -1153,34 +1153,53 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 //https://stackoverflow.com/questions/79741864/write-to-large-file-without-loading-the-whole-file-into-ram>
 // get root directory
 					console.log("Using alternative file save 5");
-const opfsRoot = await navigator.storage.getDirectory();
-let fileHandle;
-try {
-    // get file handle
-//    fileHandle = await opfsRoot.getFileHandle('myfile');
-    fileHandle = await opfsRoot.getFileHandle(btFileNameString);
-} catch (e) {
-    // create file if we failed to access it
-    fileHandle = await opfsRoot.getFileHandle(btFileNameString, {create: true});
-}
+			const opfsRoot = await navigator.storage.getDirectory();
+			let fileHandle;
+			try 
+				{
+				// get file handle>
+    			fileHandle = await opfsRoot.getFileHandle(btFileNameString);
+					console.log("1 Accessed " + btFileNameString + fileHandle.name);
 
-// write to the file at arbitrary points
-const writable = await fileHandle.createWritable();
-await writable.write({
-    type: "write",
-    position: 0,
-    data: resultLogString
-});
+				}
+			catch (e) 
+				{
+				// create file if we failed to access it>
+				console.log("2 Failed to access " + btFileNameString + fileHandle.name);
+					fileHandle = await opfsRoot.getFileHandle(btFileNameString, {create: true});
+				}
+
+// write to the file at arbitrary points>
+				console.log("3 createwritable " + btFileNameString + fileHandle.name);
+			try
+				{
+					btError = "M5 A";
+					const writable = await fileHandle.createWritable();
+					btError = "M5 B";
+					await writable.write
+						({
+							type: "write",
+							position: 0,
+							data: resultLogString
+						});
 //await writable.write({
 //    type: "write",
 //    position: 2,
 //    data: "2222"
 //});
-await writable.close();
+					btError = "M5 C";
+					await writable.close();
 
 // read back the file to confirm we've successfully written to the file
-const file = await fileHandle.getFile();
-console.log(await file.text()); // resultLogString
+					btError = "M5 D";
+					const file = await fileHandle.getFile();
+					btError = "M5 E";
+					console.log(await file.text()); // resultLogString
+				}
+			catch(Error)
+				{
+					console.log ("Error " + btError + ", " + Error);
+				}
 //}
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Method 5 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 /*
@@ -1271,16 +1290,16 @@ console.log(await file.text()); // resultLogString
     //open a dialogue box to select the file to save to>
     			const [fileHandle] = await window.showOpenFilePicker(opts);
 
-					const csvFile = await fileHandle.getFile();
-					const csvFileSize = await csvFile.size;
-					let tempString = await csvFile.text();
+					const csvFile = await fileHandle.getFile(); //get the file object
+					const csvFileSize = await csvFile.size;	//get the size of the file in bytes (i.e. the position of the last byte so the count data can be added to onto the end)
+					let tempString = await csvFile.text(); //read the text from the file
 
-					if(csvFileSize > csvColumnHeadingsLength)
+					if(csvFileSize > csvColumnHeadingsLength) //if the file contains more than just the column headings
 						{
-							tempString = tempString.slice(0,csvColumnHeadingsLength); //
-							if(tempString == csvColumnHeadingsString)
+							tempString = tempString.slice(0,csvColumnHeadingsLength); // get the column headings
+							if(tempString == csvColumnHeadingsString) //if they match the columns to be written here (i.e. if this is a valid file with the right format)
 								{
-									writeToFile(fileHandle,csvFileSize);
+									writeToFile(fileHandle,csvFileSize); //add the new count results to the end of the file
 								}
 							else
 								{
