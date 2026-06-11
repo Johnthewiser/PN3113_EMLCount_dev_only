@@ -1148,6 +1148,42 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 					if(btError == "noFP")
 						{
 */	
+					resultLogString = csvColumnHeadingsString + resultLogString;
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Method 5 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//https://stackoverflow.com/questions/79741864/write-to-large-file-without-loading-the-whole-file-into-ram>
+// get root directory
+					console.log("Using alternative file save 5");
+const opfsRoot = await navigator.storage.getDirectory();
+let fileHandle;
+try {
+    // get file handle
+//    fileHandle = await opfsRoot.getFileHandle('myfile');
+    fileHandle = await opfsRoot.getFileHandle(btFileNameString);
+} catch (e) {
+    // create file if we failed to access it
+    fileHandle = await opfsRoot.getFileHandle(btFileNameString, {create: true});
+}
+
+// write to the file at arbitrary points
+const writable = await fileHandle.createWritable();
+await writable.write({
+    type: "write",
+    position: 0,
+    data: resultLogString
+});
+//await writable.write({
+//    type: "write",
+//    position: 2,
+//    data: "2222"
+//});
+await writable.close();
+
+// read back the file to confirm we've successfully written to the file
+const file = await fileHandle.getFile();
+console.log(await file.text()); // resultLogString
+//}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Method 5 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+/*
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Method 4 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //https://stackoverflow.com/questions/65050679/javascript-a-simple-way-to-save-a-text-file>
 									console.log("Using alternative file save 4");
@@ -1165,7 +1201,7 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 									document.body.removeChild(element);
 //}
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Method 4 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-/*
+
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Method 3 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //https://stackoverflow.com/questions/65050679/javascript-a-simple-way-to-save-a-text-file>
 //no errors on console but does not save file>
