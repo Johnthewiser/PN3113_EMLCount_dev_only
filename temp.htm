@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+    </head>
+    <body>
+		// Source - https://stackoverflow.com/questions/65050679/javascript-a-simple-way-to-save-a-text-file
+// Posted by null
+// Retrieved 2026-06-10, License - null
+
+const link = document.querySelector('a');
+link.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent('insert your text here'));
+
+link.setAttribute('download', 'res.txt');
+		</body>
+</html>

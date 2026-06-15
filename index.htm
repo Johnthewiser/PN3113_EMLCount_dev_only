@@ -193,6 +193,11 @@
 				display:block-inline;
 			}
 
+			#file-input 
+				{
+  				display: none;
+				}
+				
     .select1 /* for select elements, height and width seem to set the border size not the text area as it does with other elements */
         {
 					background-color: white;
@@ -473,7 +478,7 @@
 		</div>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Status Line 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Software version number >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
-		<span class="spanStyle3">V</span><span id="versionNumber" class="spanStyle3">0.18</span>
+		<span class="spanStyle3">V</span><span id="versionNumber" class="spanStyle3">0.19</span>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Software version number <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
 </div>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< End of Section1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	-->
@@ -601,10 +606,11 @@ Past Counts
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Second set of Buttons >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
 	<br>
 		<div class="center">
+			<input type="file" id="file-input" />
 			<button id="button4" type="button" class="buttonDarkseagreen" onclick="onAddButtonClick()">Add counts to file</button>
 			<button id="button5" type="button" class="buttonDarkseagreen" onclick="onSaveButtonClick()">Save counts to new file</button>
 			<button id="button6" type="button" class="buttonBlue" onclick="onDisplayCountButtonClick()">Back to Counter</button>
-			<button id="button7" type="button" class="buttonBlue" onclick="onDisplayCountButtonClick()">Download</button>
+		<!--	<button id="button7" type="button" class="buttonBlue" onclick="onDisplayCountButtonClick()">Download</button> -->
 		</div>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Second set of Buttons <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Status Line 2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
@@ -1279,14 +1285,15 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onAddButtonClick >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   async function onAddButtonClick()
   	{
+			const csvColumnHeadingsLength = csvColumnHeadingsString.length;
       		//specify the type of file and suggested name etc to save to>
+/*
       	    const opts=
       				{
 								startIn: "downloads",
 								id: "rememberedDirectory",
       				};
 
-			const csvColumnHeadingsLength = csvColumnHeadingsString.length;
 			try
     		{
     //open a dialogue box to select the file to save to>
@@ -1342,8 +1349,55 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
       			}
 //<<< code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple <<<
       	}
+*/
+		const fileInput = document.getElementById("file-input");
+  	if (document.getElementById("file-input")) 
+			{
+    		document.getElementById("file-input").click();
+			}
+		fileInput.addEventListener("change", handleFileSelection);
 
-		}
+		function handleFileSelection(event) 
+			{
+  			const file = event.target.files[0];
+  		// Validate file existence and type>
+  			if (!file)
+					{
+						displaySection2Status("No file selected. Please choose a file.","red");
+    				return;
+  				}
+
+  			if (!file.type.startsWith("text")) 
+					{
+						displaySection2Status("Unsupported file type. Please select a text file.","red");
+						return;
+  				}
+
+  		// Read the file>
+  			const reader = new FileReader();
+  			reader.onload = () => 
+					{
+						const originalContent = reader.result;
+    				const newContent = originalContent + "Added content,";
+        
+    				const fileBlob = new Blob([newContent], { type: 'text/csv' });
+						const url = URL.createObjectURL(fileBlob);
+		  			const a = document.createElement('a');
+		  			a.href = url;
+		  			a.download = event.target.files[0].name;
+    				document.body.appendChild(a);
+		  			a.click();
+    				document.body.removeChild(a);
+						URL.revokeObjectURL(fileBlob);			
+					};
+				reader.onerror = () => 
+					{
+						displaySection2Status("Error reading the file. Please try again.","red");
+					};
+  			reader.readAsText(file);
+			} //end of  handleFileSelection(event)
+
+		} //end of onAddButtonClick()
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onAddButtonClick <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> writeToFile >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 async function writeToFile(fileHandle,fileSize)
