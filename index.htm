@@ -1380,7 +1380,7 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 						const originalContent = reader.result;
     				const newContent = originalContent + "Added content,";
         
-    				const fileBlob = new Blob([newContent], { type: 'text/csv' });
+    				const fileBlob = new File([newContent], { type: 'text/csv' });
 						const url = URL.createObjectURL(fileBlob);
 		  			const a = document.createElement('a');
 		  			a.href = url;
