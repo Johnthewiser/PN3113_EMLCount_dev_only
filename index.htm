@@ -118,7 +118,7 @@
   		position: relative;
 			color: blue;
      	font-family: Arial, sans-serif;
-      font-size: 20px;
+      font-size: 16px;
      }
 		 
 	.divStyle1
@@ -129,7 +129,7 @@
 		{
 			text-align:left;
       font-family: Arial, sans-serif;
-      font-size: 20px;
+      font-size: 16px;
 			max-width: 400px;
 /*			text-justify: left;*/
 		}
@@ -157,7 +157,7 @@
     {
 			text-align: center;
      	padding: 10px;
-     	font-size: 20px;
+     	font-size: 16px;
      	width: 334px;
 			height:25px;
       border: 1px solid #ccc;
@@ -176,7 +176,7 @@
 				border-radius: 4px;
 				margin-left: 0px;
 				margin-right: 0px;
-				font-size: 20px;
+				font-size: 16px;
 				display:block-inline;
 			}
    .input3
@@ -189,11 +189,16 @@
 				border-radius: 4px;
 				margin-left: 25px;
 				margin-right: 4px;
-				font-size: 20px;
+				font-size: 16px;
 				display:block-inline;
 			}
 
-			#file-input 
+			#onAddFileChooser
+				{
+  				display: none;
+				}
+				
+			#onSaveFileChooser
 				{
   				display: none;
 				}
@@ -209,7 +214,7 @@
 					border-radius: 4px;
 					margin-left: 20px;
 					margin-right: 4px;
-					font-size: 20px;
+					font-size: 16px;
 					display:block-inline;
         }
 
@@ -217,7 +222,7 @@
         {
 					background-color: blue;
           color: white;
-					font-size: 20px;
+					font-size: 16px;
 					width: 108px;
 					height:80px;
 					border: none;
@@ -230,7 +235,7 @@
         {
 			background-color: lightgrey;
             color: white;
-			font-size: 20px;
+			font-size: 16px;
 			width: 108px;
 			height:80px;
 			border: none;
@@ -243,7 +248,7 @@
         {
 			background-color: red;
             color: white;
-			font-size: 20px;
+			font-size: 16px;
 			width: 108px;
 			height:80px;
 			border: none;
@@ -257,7 +262,7 @@
         {
 			background-color: darkseagreen;
             color: white;
-			font-size: 20px;
+			font-size: 16px;
 			width: 108px;
 			height:80px;
 			border: none;
@@ -297,7 +302,7 @@
 
 	.noborder
 		{
-			font-size: 20px;
+			font-size: 16px;
 			color: blue;
 			height: 18px;
 			text-align: center;
@@ -306,7 +311,7 @@
 
 	.border1
 		{
-			font-size: 20px;
+			font-size: 16px;
 			color: blue;
 			border: 1px solid lightgrey;
 			border-radius: 6px;
@@ -316,7 +321,7 @@
 
 	.border2
 		{
-			font-size: 20px;
+			font-size: 16px;
 			color: blue;
 			border: 1px solid lightgrey;
 			border-radius: 4px;
@@ -467,7 +472,6 @@
 		<button id="button1" type="button" class="buttonBlue" onclick="onScanButtonClick()">Connect Counter</button>
     <button id="button2" type="button" class="buttonLightgrey" disabled="" onclick="onStopOrResetButtonClick()">Stop Count</button>
 		<button id="button3" type="button" class="buttonLightgrey" disabled="" onclick="onLogResultButtonClick()">Show Counts</button>
-<!--		<button id="button3" type="button" class="buttonLightgrey" disabled="" onclick="onSaveButtonClick()">Save Counts</button>> -->
 		<br>
 		<button id="button7" type="button" class="buttonRed" onclick="onConfirmResetButtonClick()">Confirm Reset</button>
 	</div>
@@ -478,7 +482,7 @@
 		</div>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Status Line 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Software version number >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
-		<span class="spanStyle3">V</span><span id="versionNumber" class="spanStyle3">0.19</span>
+		<span class="spanStyle3">V</span><span id="versionNumber" class="spanStyle3">0.20</span>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Software version number <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
 </div>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< End of Section1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	-->
@@ -606,7 +610,7 @@ Past Counts
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Second set of Buttons >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
 	<br>
 		<div class="center">
-			<input type="file" id="file-input" />
+			<input type="file" id="onAddFileChooser" />
 			<button id="button4" type="button" class="buttonDarkseagreen" onclick="onAddButtonClick()">Add counts to file</button>
 			<button id="button5" type="button" class="buttonDarkseagreen" onclick="onSaveButtonClick()">Save counts to new file</button>
 			<button id="button6" type="button" class="buttonBlue" onclick="onDisplayCountButtonClick()">Back to Counter</button>
@@ -732,8 +736,7 @@ enableDisableButton("button3",enable);
 		//Put the restored results back in the results log table
 			updateResultLogTable(0); //fill the results table from the first result position in the string(0) to the end of the resultLogString
 			enableDisableButton("button3",enable);
-		displaySection1Status("Connect counter","black");
-
+			displaySection1Status("Connect counter","black");
 		}
 
 if(localStorage.getItem("siteNameString") != null) //if a copy of the resultLog has been stored locally
@@ -1123,7 +1126,7 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onSaveButtonClick >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   async function onSaveButtonClick()
   	{
-/*		
+/* >>> window.showSaveFilePicker is supported in windows and android, chrome and edge browers but not in ios/ipados/safari so use file blobs, download etc instead (below) >>>
 	//specify the type of file and suggested name etc to save to>
       const opts=
       	{
@@ -1140,154 +1143,38 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
     //open a dialogue box to select the file to save to>
 			try
     		{
-          resultLogString = csvColumnHeadingsString + resultLogString;
-					btError = "noFP";
 					const fileHandle = await window.showSaveFilePicker(opts);
-					btError = "FP";
+          resultLogString = csvColumnHeadingsString + resultLogString;
 					writeToFile(fileHandle,0);
 				} //end of try
     	catch(error)
     		{
-//>>> code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple >>>
-    			console.log('Error ' + btError + ": " + error.name + ', ' + error.code + ', ' + error );
-//					if (error.name !== 'AbortError') 
-					if(btError == "noFP")
+    			console.log('Error7: ' + error.code + ', ' + error );
+					if(error.code == 20)
 						{
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Method 5 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//https://stackoverflow.com/questions/79741864/write-to-large-file-without-loading-the-whole-file-into-ram>
-// get root directory
-			resultLogString = csvColumnHeadingsString + resultLogString;
-			console.log("Using alternative file save 5");
-			const opfsRoot = await navigator.storage.getDirectory();
-			let fileHandle;
-			try 
-				{
-				// get file handle>
-    			fileHandle = await opfsRoot.getFileHandle(btFileNameString);
-					console.log("1 Accessed " + btFileNameString + ", " + fileHandle.name);
-
-				}
-			catch (e) 
-				{
-				// create file if we failed to access it>
-				console.log("2 Failed to access " + btFileNameString +  ", " + fileHandle.name);
-					fileHandle = await opfsRoot.getFileHandle(btFileNameString, {create: true});
-				}
-
-// write to the file at arbitrary points>
-				console.log("3 createwritable " + btFileNameString + ", " + fileHandle.name);
-			try
-				{
-					btError = "M5 A";
-					const writable = await fileHandle.createWritable();
-					btError = "M5 B";
-					await writable.write
-						({
-							type: "write",
-							position: 0,
-							data: resultLogString
-						});
-//await writable.write({
-//    type: "write",
-//    position: 2,
-//    data: "2222"
-//});
-					btError = "M5 C";
-					await writable.close();
-
-// read back the file to confirm we've successfully written to the file
-					btError = "M5 D";
-					const file = await fileHandle.getFile();
-					btError = "M5 E";
-					console.log(await file.text()); // resultLogString
-				}
-			catch(Error)
-				{
-					console.log ("Error " + btError + ", " + Error);
-				}
-//}
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Method 5 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-/*
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Method 4 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//https://stackoverflow.com/questions/65050679/javascript-a-simple-way-to-save-a-text-file>
-									console.log("Using alternative file save 4");
-									resultLogString = csvColumnHeadingsString + resultLogString;
-//function download(btFileNameString, resultLogString) {
-									var element = document.createElement('a');
-									element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(resultLogString));
-									element.setAttribute('download', btFileNameString);
-
-									element.style.display = 'none';
-									document.body.appendChild(element);
-
-									element.click();
-
-									document.body.removeChild(element);
-//}
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Method 4 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Method 3 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//https://stackoverflow.com/questions/65050679/javascript-a-simple-way-to-save-a-text-file>
-//no errors on console but does not save file>
-									console.log("Using alternative file save 3");
-									resultLogString = csvColumnHeadingsString + resultLogString;
-									var myFile = new Blob([resultLogString], {type: 'text/plain'});
-
-									window.URL = window.URL || window.webkitURL;
-									var dlBtn = document.getElementById("button7");
-
-									dlBtn.setAttribute("href", window.URL.createObjectURL(myFile));
-									dlBtn.setAttribute("download", btFileNameString);					
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Method 3 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-*/	
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Method 2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//no errors on console but does not save file>
-									console.log("Using alternative file save 2");
-									resultLogString = csvColumnHeadingsString + resultLogString;
-//									const fileBlob = new Blob([resultLogString], { type: 'text/csv' });
-									const fileBlob = new File([resultLogString], { type: 'text/csv' });
-									let tempString = await fileBlob.text();
-									console.log("fielBlob " + tempString + ", " + fileBlob.size + ", " + fileBlob.type);
-      						const url = URL.createObjectURL(fileBlob);
-									console.log("url " + url);
-      						const a = document.createElement('a');
-									console.log("a " + a);
-									a.href = url;
-									console.log("a.href " + a.href);
-									a.download = btFileNameString;
-//									a.download;
-									console.log("a.download " + a.download);
-									document.body.appendChild(a);
-									console.log("click");
-									a.click();
-									console.log("remove");
-									document.body.removeChild(a);
-									console.log("revoke");
-									URL.revokeObjectURL(url);
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Method 2 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-/*
+							displaySection2Status("Log not Saved! '" + btFileName + "' is open in another application","red");
 						}
-					else
-						{
-//<<< code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple <<<
-    			console.log('Error7: ' + error.name + ', ' + error.code + ', ' + error );
-							if(error.code == 20)
-								{
-									displaySection2Status("Log not Saved! '" + btFileNameString + "' is open in another application","red");
-								}
-//>>> code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple >>>
-      			}
-//<<< code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple <<<
-				}
-*/
-			}
+      	}
+// <<< window.showSaveFilePicker is supported in windows and android, chrome and edge browers but not in ios/ipados/safari so use file blobs, download etc instead (below) >>> <<< */
+// >>> This is alterntive code which downloads the file as an alternative to using showSaveFilePicker to work in ios ipados safari etc  >>>
+    	const fileBlob = new File([csvColumnHeadingsString + resultLogString], { type: 'text/csv' }); //create a file type blob with the new data added to the end of the loaded file data
+			const url = URL.createObjectURL(fileBlob); //create a url for the blob (not quite sure what that means but it works)
+		  const a = document.createElement('a'); //create a 'dummy' html element?
+		  a.href = url;	//and give it the blobs url
+		  a.download = btFileNameString; //download the the data using the default file name
+    	document.body.appendChild(a); //
+		  a.click(); //click the download link just created
+    	document.body.removeChild(a);//remove whatever we just did above
+			URL.revokeObjectURL(fileBlob); //we should revoke it too - apparently
+			filedownloaded(); //display downloaded message, handle buttons, etc
+// <<< This is alterntive code which downloads the file as an alternative to using showSaveilePicker to work in ios ipados safari etc  <<<
+		}
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onSaveButtonClick <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onAddButtonClick >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   async function onAddButtonClick()
   	{
 			const csvColumnHeadingsLength = csvColumnHeadingsString.length;
-      		//specify the type of file and suggested name etc to save to>
-/*
+/* >>> window.showOpenFilePicker is supported in windows and android, chrome and edge browers but not in ios/ipados/safari so use file blobs, download etc instead (below) >>>
       	    const opts=
       				{
 								startIn: "downloads",
@@ -1303,7 +1190,7 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 					const csvFileSize = await csvFile.size;	//get the size of the file in bytes (i.e. the position of the last byte so the count data can be added to onto the end)
 					let tempString = await csvFile.text(); //read the text from the file
 
-					if(csvFileSize > csvColumnHeadingsLength) //if the file contains more than just the column headings
+					if(csvFileSize >= csvColumnHeadingsLength) //if the file contains the full column headers text or more
 						{
 							tempString = tempString.slice(0,csvColumnHeadingsLength); // get the column headings
 							if(tempString == csvColumnHeadingsString) //if they match the columns to be written here (i.e. if this is a valid file with the right format)
@@ -1322,81 +1209,78 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 				} //end of try
     	catch(error)
     		{
-//>>> code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple >>>
-    					console.log('Error: ' + error.name + ', ' + error.code + ', ' + error );
-
-					if (error.name !== 'AbortError') 
-						{
-							const blob = new Blob([resultLogString], { type: 'text/plain' });
-      				const url = URL.createObjectURL(blob);
-      				const a = document.createElement('a');
-      				a.href = url;
-      				a.download = btFileNameString;
-      				document.body.appendChild(a);
-      				a.click();
-      				document.body.removeChild(a);
-      				URL.revokeObjectURL(url);
-						}
-					else
-						{
-//<<< code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple <<<
     			console.log('Error8: ' + error.code + ', ' + error );
 					if(error.code == 11)
 						{
 							displaySection2Status("Log not Saved! '" + btFileNameString + "' is open in another application","red");
 						}
-//>>> code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple >>>
-      			}
-//<<< code added to save files on Ios and Ipados because window.showSaveFilePicker is not implemented by apple <<<
       	}
-*/
-		const fileInput = document.getElementById("file-input");
-  	if (document.getElementById("file-input")) 
+// <<< window.showOpenFilePicker is supported in windows and android, chrome and edge browers but not in ios/ipados/safari so use file blobs, download etc instead (below) <<< */
+// >>> This is alterntive code which downloads the file as an alterntive to using showOpenFilePicker so it will work in ios ipados safari etc  >>>
+		const fileInput = document.getElementById("onAddFileChooser"); //the hmtl input button is hidden by CSS. click it automatically to bring up the file select window
+  	if (document.getElementById("onAddFileChooser")) 
 			{
-    		document.getElementById("file-input").click();
+    		document.getElementById("onAddFileChooser").click();
 			}
-		fileInput.addEventListener("change", handleFileSelection);
+		fileInput.addEventListener("change", handleFileSelection); //when file has been selected in the file select window...
 
-		function handleFileSelection(event) 
+		function handleFileSelection(event) //...handle it be checking for errors
 			{
-  			const file = event.target.files[0];
-  		// Validate file existence and type>
+  			const csvFile = event.target.files[0]; //the file select window returns an array of file objects. the file selected will be the first in the array
+				const csvFileSize = csvFile.size;	//get the size of the file in bytes (i.e. the position of the last byte so the count data can be added to onto the end)
+				let tempString = csvFile.text(); //read the text from the file
+  		// > If no file has been selected>
   			if (!file)
 					{
 						displaySection2Status("No file selected. Please choose a file.","red");
     				return;
   				}
-
-  			if (!file.type.startsWith("text")) 
+			//if the selected file is the wrong type>
+  			if (!file.type.startsWith("text")) //if it's not a text/csv file...
 					{
 						displaySection2Status("Unsupported file type. Please select a text file.","red");
 						return;
   				}
-
+				//if the file has all the column header text>
+					if(csvFileSize >= csvColumnHeadingsLength) //if the file contains the full column headers text or more
+						{
+							tempString = tempString.slice(0,csvColumnHeadingsLength); // sile out only the column headings 
+							if(tempString != csvColumnHeadingsString) //if they match the current columns headings format (i.e. if this is a valid file where the data to be written will lign up with the column headings)
+								{
+									displaySection2Status("Log not Saved! '" + btFileNameString + "' is not a valid count file","red");
+									return;
+								}
+						}
+					else //if the file isn't long enough to hold the column header text
+						{
+							displaySection2Status("Log not Saved! '" + btFileNameString + "' is not a valid count file","red");
+							return;
+						}
+			//no error detected so carry on>
   		// Read the file>
-  			const reader = new FileReader();
-  			reader.onload = () => 
+  			const reader = new FileReader(); //FileReader will asyncronously wait for the file to be loaded
+  			reader.onload = () => //when the file has been loaded
 					{
-						const originalContent = reader.result;
-    				const newContent = originalContent + "Added content,";
+//    				const newContent = reader.result + resultLogString; //add the new data to the dat
         
-    				const fileBlob = new File([newContent], { type: 'text/csv' });
-						const url = URL.createObjectURL(fileBlob);
-		  			const a = document.createElement('a');
-		  			a.href = url;
-		  			a.download = event.target.files[0].name;
-    				document.body.appendChild(a);
-		  			a.click();
-    				document.body.removeChild(a);
-						URL.revokeObjectURL(fileBlob);			
+    				const fileBlob = new File([reader.result + resultLogString], { type: 'text/csv' }); //create a file type blob with the new data added to the end of the loaded file data
+						const url = URL.createObjectURL(fileBlob); //create a url for the blob (not quite sure what that means but it works)
+		  			const a = document.createElement('a'); //create a 'dummy' html element?
+		  			a.href = url;	//and give it the blobs url
+		  			a.download = csvFile.name; //download the the data to the file chosen above
+    				document.body.appendChild(a); //
+		  			a.click(); //click the download link just created
+    				document.body.removeChild(a);//remove whatever we just did above
+						URL.revokeObjectURL(fileBlob); //we should revoke it too - apparently
 					};
-				reader.onerror = () => 
+				reader.onerror = () => //if FileReader encountered and error while reading the file>
 					{
 						displaySection2Status("Error reading the file. Please try again.","red");
 					};
-  			reader.readAsText(file);
 			} //end of  handleFileSelection(event)
-
+				filedownloaded(); //display downloaded message, handle buttons, etc
+				fileInput.removeEventListener("change", handleFileSelection); //when file has been selected in the file select window...
+// <<< This is alterntive code which downloads the file as an alterntive to using showOpenFilePicker so it will work in ios ipados safari etc  <<<
 		} //end of onAddButtonClick()
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onAddButtonClick <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> writeToFile >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1439,6 +1323,30 @@ async function writeToFile(fileHandle,fileSize)
       	}
 		}//end of writeToFile function
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< writeToFile <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> filedownloaded >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+function filedownloaded()
+	{
+			//reset the result log etc.>
+				displaySection2Status("Results saved to file '" + btFileNameString + "'","darkseagreen");
+				enableDisableButton('button3',disable);
+				enableDisableButton('button4',disable);
+				enableDisableButton('button5',disable);
+				enableDisableButton('button6',enable);
+				resultLogEntries = 0; //reset the number of results back to 0;
+				resultLogString = ""; //reset the result log back to no results
+				localStorage.setItem("ResultLogString",resultLogString); //reset the copy of results log stored locally
+			//clear the results displayed in the resultLog table>
+				for(let rowNumber = 0 ; rowNumber < maxResultLogEntries ; rowNumber++)
+					{
+						for(let columnNumber = 0 ; columnNumber < maxResultLogColumns ;  columnNumber++)
+							{
+								let resultLogID = "table1c" + columnNumber + "r" + rowNumber; //generate html table cell id string
+								document.getElementById(resultLogID).innerHTML = ""; //display the data for that id
+							}
+					}
+				enableDisableCount(enable); //now results have been save to file ensure new counts can start
+		}//end of filedownloaded function
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< filedownloaded <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> updateResultLogTable >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 function updateResultLogTable(resultStartPosition)
 	{
