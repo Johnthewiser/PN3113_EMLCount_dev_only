@@ -482,7 +482,7 @@
 		</div>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Status Line 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Software version number >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   -->
-		<span class="spanStyle3">V</span><span id="versionNumber" class="spanStyle3">0.20</span>
+		<span class="spanStyle3">V</span><span id="versionNumber" class="spanStyle3">0.21</span>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Software version number <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   -->
 </div>
 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< End of Section1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	-->
@@ -1173,123 +1173,57 @@ document.getElementById('nozzleSize').addEventListener('input', function ()
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onAddButtonClick >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   function onAddButtonClick()
   	{
-			const csvColumnHeadingsLength = csvColumnHeadingsString.length;
-			//no error detected so carry on>
-  		// Read the file>
-  			const reader = new FileReader(); //FileReader will asyncronously wait for the file to be loaded
-			 //when the file has been loaded>
-  			reader.onload = () =>
-					{
-						console.log("File loaded");
-/*
-					//if the file has all the column header text>
-						let tempString = reader.result; //read the text from the file
-						if(csvFileSize >= csvColumnHeadingsLength) //if the file contains the full column headers text or more
-							{
-								tempString = tempString.slice(0,csvColumnHeadingsLength); // sile out only the column headings 
-								if(tempString != csvColumnHeadingsString) //if they match the current columns headings format (i.e. if this is a valid file where the data to be written will lign up with the column headings)
-									{
-										displaySection2Status("Log not Saved! '" + btFileNameString + "' is not a valid count file","red");
-										return;
-									}
-							}
-						else //if the file isn't long enough to hold the column header text
-							{
-								displaySection2Status("Log not Saved! '" + btFileNameString + "' is not a valid count file","red");
-								return;
-							}
-*/
-    				const fileBlob = new File([reader.result + resultLogString], { type: 'text/csv' }); //create a file type blob with the new data added to the end of the loaded file data
-						const url = URL.createObjectURL(fileBlob); //create a url for the blob (not quite sure what that means but it works)
-		  			const a = document.createElement('a'); //create a 'dummy' html element?
-		  			a.href = url;	//and give it the blobs url
-//						console.log("btFileNameString " + btFileNameString);
-//						console.log("btFileNameString " + btFileNameString);
-		  			a.download = event.target.files[0].name; //download the the data to the file chosen above
-    				document.body.appendChild(a); //
-		  			a.click(); //click the download link just created
-    				document.body.removeChild(a);//remove whatever we just did above
-						URL.revokeObjectURL(fileBlob); //we should revoke it too - apparently
-						filedownloaded(); //display downloaded message, handle buttons, etc
-					};
-				reader.onerror = () => //if FileReader encountered and error while reading the file>
-					{
-						displaySection2Status("Error reading the file. Please try again.","red");
-					};
-/* >>> window.showOpenFilePicker is supported in windows and android, chrome and edge browers but not in ios/ipados/safari so use file blobs, download etc instead (below) >>>
-      	    const opts=
-      				{
-								startIn: "downloads",
-								id: "rememberedDirectory",
-      				};
-
-			try
-    		{
-    //open a dialogue box to select the file to save to>
-    			const [fileHandle] = await window.showOpenFilePicker(opts);
-
-					const csvFile = await fileHandle.getFile(); //get the file object
-					const csvFileSize = await csvFile.size;	//get the size of the file in bytes (i.e. the position of the last byte so the count data can be added to onto the end)
-					let tempString = await csvFile.text(); //read the text from the file
-
-					if(csvFileSize >= csvColumnHeadingsLength) //if the file contains the full column headers text or more
-						{
-							tempString = tempString.slice(0,csvColumnHeadingsLength); // get the column headings
-							if(tempString == csvColumnHeadingsString) //if they match the columns to be written here (i.e. if this is a valid file with the right format)
-								{
-									writeToFile(fileHandle,csvFileSize); //add the new count results to the end of the file
-								}
-							else
-								{
-									displaySection2Status("Log not Saved! '" + btFileNameString + "' is not a valid count file","red");
-								}
-						}
-					else
-						{
-							displaySection2Status("Log not Saved! '" + btFileNameString + "' is not a valid count file","red");
-						}
-				} //end of try
-    	catch(error)
-    		{
-    			console.log('Error8: ' + error.code + ', ' + error );
-					if(error.code == 11)
-						{
-							displaySection2Status("Log not Saved! '" + btFileNameString + "' is open in another application","red");
-						}
-      	}
-// <<< window.showOpenFilePicker is supported in windows and android, chrome and edge browers but not in ios/ipados/safari so use file blobs, download etc instead (below) <<< */
+//			const csvColumnHeadingsLength = csvColumnHeadingsString.length;
 // >>> This is alterntive code which downloads the file as an alterntive to using showOpenFilePicker so it will work in ios ipados safari etc  >>>
-		const fileInput = document.getElementById("file-input"); //the hmtl input button is hidden by CSS. click it automatically to bring up the file select window
+		const fileInput = document.getElementById("file-input");
+//		const messageDisplay = document.getElementById("message");
+
   	if (document.getElementById("file-input")) 
 			{
     		document.getElementById("file-input").click();
 			}
-		fileInput.addEventListener("change", handleFileSelection); //when file has been selected in the file select window...
+	
+		fileInput.addEventListener("change", handleFileSelection);
 
-		function handleFileSelection(event) //...handle it be checking for errors
+		function handleFileSelection(event) 
 			{
-				console.log("Handling " + event.target.files[0].name);
-  			const csvFile = event.target.files[0]; //the file select window returns an array of file objects. the file selected will be the first in the array
-//				const csvFileSize = csvFile.size;	//get the size of the file in bytes (i.e. the position of the last byte so the count data can be added to onto the end)
-//				btFileNameString = csvFile.name;
-  		// > If no file has been selected>
+  			const csvFile = event.target.files[0];
+				btFileNameString = event.target.files[0].name; //remember file name for next time 
+  		// Validate file existence and type>
   			if (!csvFile)
 					{
 						displaySection2Status("No file selected. Please choose a file.","red");
     				return;
   				}
-			//if the selected file is the wrong type>
-  			if (!csvFile.type.startsWith("text")) //if it's not a text/csv file...
+
+  			if (!csvFile.type.startsWith("text/csv")) 
 					{
 						displaySection2Status("Unsupported file type. Please select a text file.","red");
 						return;
   				}
-//				fileInput.removeEventListener("change", handleFileSelection); //when file has been selected in the file select window...
-//				console.log("reader.readyState " + reader.readyState);
-			} //end of  handleFileSelection(event)
 
-// <<< This is alterntive code which downloads the file as an alterntive to using showOpenFilePicker so it will work in ios ipados safari etc  <<<
-		} //end of onAddButtonClick()
+  		// Read the file>
+  			const reader = new FileReader();
+				reader.readAsText(csvFile); //this appears to do nothing but removing it prevents file being downloaded (and apparently even prevents reader.onload triggering)
+  			reader.onload = () => 
+					{
+						const fileBlob = new File([csvColumnHeadingsString + resultLogString], { type: 'text/csv' }); //create a file type blob with the new data added to the end of the loaded file data
+						const url = URL.createObjectURL(fileBlob);
+		  			const a = document.createElement('a');
+		  			a.href = url;
+		  			a.download = btFileNameString; //download the the data using the default file name
+    				document.body.appendChild(a);
+		  			a.click();
+    				document.body.removeChild(a);
+						URL.revokeObjectURL(fileBlob);			
+						filedownloaded(); //display downloaded message, handle buttons, etc
+					};
+				reader.onerror = () => 
+					{
+						displaySection2Status("Error reading file. Please try again.","red");
+  				};
+			} //end of  handleFileSelection(event)
+		} //end of onAddButtonClick
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< onAddButtonClick <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> writeToFile >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 async function writeToFile(fileHandle,fileSize)
